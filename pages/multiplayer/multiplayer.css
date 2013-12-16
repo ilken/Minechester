@@ -1,0 +1,160 @@
+﻿body {
+    color: white; 
+    font-family:'Comic Sans MS';
+    border:solid 1px white;
+}
+
+#gridContainer {
+    display: -ms-grid;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: 1fr 7fr;
+    height: 100%;
+    width: 100%;
+    font-size: 40pt;
+    overflow-y: scroll;
+}
+    #navBar {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;  
+        color: #fff;      
+    }
+
+        #navBar:hover{
+            background: #8b8686;
+            color: #000000;
+            opacity:0.6;
+        }
+        #navArrow {
+            position:absolute;
+            top:40%;
+            font-size: 148pt;
+            text-align:center;
+         }
+
+    #bodyContainer {
+        -ms-grid-row: 1;
+        -ms-grid-column: 2;  
+        display: -ms-grid;
+        -ms-grid-rows: 1fr 5fr;
+        -ms-grid-columns: 1fr;
+        height: 100%;
+        width: 100%;
+        font-size: 40pt;
+    }
+
+        #gameHeader {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;     
+            display: -ms-grid;
+            -ms-grid-rows: 1fr;
+            -ms-grid-columns: 2.3fr 3fr 1fr;
+            font-size: 98pt;
+        }
+            #gameHeaderLeft {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;                  
+            }
+            #gameHeaderRight {
+                -ms-grid-row: 1;
+                -ms-grid-column: 2;  
+            }
+
+        #gameBody {
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+            display: -ms-grid;
+            -ms-grid-rows: 1fr;
+            -ms-grid-columns:1fr 3fr 1fr;
+            height: 100%
+        }
+            #cheatEngine {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;
+            }
+                .ctitle {
+                    font-size: 28pt !important;
+                }
+                #cheatButtons {
+                    display: none;
+                }
+
+            #gameContainer {
+                -ms-grid-row: 1;
+                -ms-grid-column: 2;
+                display: -ms-grid;
+                -ms-grid-rows: 1fr 4fr 1fr;
+                -ms-grid-columns: 1fr;
+            }
+                #boardHeader {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr;
+                    -ms-grid-columns: 1fr 1fr;
+                }
+                    #timer {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                    }
+
+                    #mineCounter {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 2;
+                    }
+
+                #board {
+                    -ms-grid-row: 2;
+                    -ms-grid-column: 1;
+                }
+
+                #newGame {
+                    -ms-grid-row: 3;
+                    -ms-grid-column: 1;
+                }
+
+            #solverContainer {
+                -ms-grid-row: 1;
+                -ms-grid-column: 3;
+                display: -ms-grid;
+                -ms-grid-rows: 1fr 1fr;
+                -ms-grid-columns: 1fr;
+            }
+                #palette {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                }
+
+                #solver {
+                    -ms-grid-row: 2;
+                    -ms-grid-column: 1;
+                }
+
+span, button, img {
+    font-size: 25pt;
+    margin: 5px;
+    display: block;
+}
+
+.placeBorder {
+	padding: 14px 20px 20px 20px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	
+	background: -moz-linear-gradient(top, #010101, #181818);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #010101),color-stop(1, #181818));
+	
+	border: 2px solid #454545; 
+	overflow: hidden; 
+	
+	-webkit-user-select: none;
+}
+
+button {
+    width: 100%;
+}
+
+textarea {
+    width: 90%;
+    height: 150px;
+}

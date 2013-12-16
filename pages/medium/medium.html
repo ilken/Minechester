@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Intermediate Level</title>
+
+        <!-- WinJS references -->
+        <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+        <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+        <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+        <!--Halloumi references -->
+        <link href="/css/minesweeper.css" rel="stylesheet" />
+        <link href="/pages/medium/medium.css" rel="stylesheet" />
+        <script src="/js/jquery-2.0.3.min.js"></script>
+        <script src="/pages/medium/medium.js"></script>
+    </head>
+    <body>
+        <div id="gridContainer">
+            <div id="navBar"> 
+               <span id="navArrow"><</span>
+            </div>
+            <div id="bodyContainer">
+                <div id="gameHeader">Minesweeper</div>
+                <div id="gameBody">
+                    <div id="gameContainer">
+                        <div id="game" class="minesweeper">                         
+                            <div id="boardHeader">
+                                <div id="timer">
+                                    Timer<span class="timer">0</span>
+                                </div>
+                                <div id="mineCounter">
+                                    Mines<span class="mineCounter">5</span>
+                                </div>
+                            </div>
+                            <div class="board"></div>
+                            <div id="newGame">
+                                <button class="newGame" type="button">New game</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="solverContainer">
+                        <div id="palette">
+                            Palette
+                            <span>Empty Boxes:</span>
+                            <select id="emptyPalette" name="select">
+                                <option value="purple" style="background-color: purple">Purple</option>
+                                <option value="orange" style="background-color: orange">Orange</option>
+                                <option value="blue" style="background-color: blue">Blue</option>
+                                <option value="green" style="background-color: green">Green</option>
+                                <option value="red" style="background-color: red">Red</option>
+                                <option value="yellow" style="background-color: yellow">Yellow</option>
+                                <option value="white" style="background-color: white">White</option>
+                            </select>
+
+                            <span>Hidden Field</span>
+                            <select id="revealedPalette" name="select">
+                                <option value="purple" style="background-color: purple">Purple</option>
+                                <option value="orange" style="background-color: orange">Orange</option>
+                                <option value="blue" style="background-color: blue">Blue</option>
+                                <option value="green" style="background-color: green">Green</option>
+                                <option value="red" style="background-color: red">Red</option>
+                                <option value="yellow" style="background-color: yellow">Yellow</option>
+                                <option value="white" style="background-color: white">White</option>
+                            </select>
+
+                            <span>Numbers:</span>
+                            <select id="numberPalette" name="select">
+                                <option value="white" style="background-color: white">White</option>
+                                <option value="purple" style="background-color: purple">Purple</option>
+                                <option value="orange" style="background-color: orange">Orange</option>
+                                <option value="blue" style="background-color: blue">Blue</option>
+                                <option value="green" style="background-color: green">Green</option>
+                                <option value="red" style="background-color: red">Red</option>
+                                <option value="yellow" style="background-color: yellow">Yellow</option>         
+                            </select>
+                        </div>
+                        <div id="solver">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

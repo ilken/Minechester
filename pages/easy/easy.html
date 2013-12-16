@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Easy Level</title>
+
+        <!-- WinJS references -->
+        <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+        <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+        <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+        <!--Halloumi references -->
+        <link href="/css/default.css" rel="stylesheet" />
+        <link href="/css/minesweeper.css" rel="stylesheet" />
+        <link href="/pages/easy/easy.css" rel="stylesheet" />
+        <link href="/css/style.css" rel="stylesheet" />
+        <script src="/js/jquery-2.0.3.min.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
+        <script src="/pages/easy/easy.js"></script>
+    </head>
+    <body>
+        <div id="gridContainer">
+            <div id="bodyContainer">
+                <div id="gameHeader">
+                    <div id="gameTitle" >
+                        <header aria-label="Header content" role="banner">
+                            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+                                Easy
+                        </header>
+                    </div>
+                    <div id="cheatEngine" >
+                        <div class="ctitle">Solver Algorithm</div>
+                        <div id="algoBox">
+                            <button class="algorithm" type="button">Algorithm 1</button>
+                            <textarea id="algoText"></textarea>
+                        </div>
+                        <div id="paletteContainer" class="placeBorder">
+                            <div id="palette">
+                                Palette
+                                <div>Empty Boxes:
+                                    <table>
+                                        <tr>
+                                            <td class="emptyPalette" id="purple" style="background-color: purple"></td>
+                                            <td class="emptyPalette" id="red" style="background-color: red"></td>
+                                            <td class="emptyPalette" id="yellow" style="background-color: yellow"></td>
+                                            <td class="emptyPalette" id="green" style="background-color: green"></td>
+                                            <td class="emptyPalette" id="blue" style="background-color: blue"></td>
+                                            <td class="emptyPalette" id="orange" style="background-color: orange"></td>
+                                            <td class="emptyPalette" id="white" style="background-color: white"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div>Hidden Field
+                                    <table>
+                                        <tr>
+                                            <td class="hiddenPalette" id="purple" style="background-color: purple"></td>
+                                            <td class="hiddenPalette" id="red" style="background-color: red"></td>
+                                            <td class="hiddenPalette" id="yellow" style="background-color: yellow"></td>
+                                            <td class="hiddenPalette" id="green" style="background-color: green"></td>
+                                            <td class="hiddenPalette" id="blue" style="background-color: blue"></td>
+                                            <td class="hiddenPalette" id="orange" style="background-color: orange"></td>
+                                            <td class="hiddenPalette" id="white" style="background-color: white"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div>Numbers:
+                                    <table>
+                                        <tr>
+                                            <td class="numberPalette" id="purple" style="background-color: purple"></td>
+                                            <td class="numberPalette" id="red" style="background-color: red"></td>
+                                            <td class="numberPalette" id="yellow" style="background-color: yellow"></td>
+                                            <td class="numberPalette" id="green" style="background-color: green"></td>
+                                            <td class="numberPalette" id="blue" style="background-color: blue"></td>
+                                            <td class="numberPalette" id="orange" style="background-color: orange"></td>
+                                            <td class="numberPalette" id="white" style="background-color: white"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="gameBody">
+                    <div id="gameContainer">
+                        <div id="game" class="minesweeper">                         
+                            <div id="boardHeader">
+                                <div id="timer">
+                                    <div class="timer">0</div>
+                                </div>
+                                <div id="mineCounter">
+                                    <div class="mineCounter">5</div>
+                                </div>
+                            </div>
+                            <div class="board" id="board"></div>
+                            <div id="newGame">
+                                <button class="newGame" type="button">New Game</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

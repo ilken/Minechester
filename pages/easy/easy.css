@@ -1,0 +1,136 @@
+﻿body {
+    color: white; 
+    font-family:'Comic Sans MS';
+    border:solid 1px white;
+}
+
+#gridContainer {
+    display: -ms-grid;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: 1fr;
+    height: 100%;
+    width: 100%;
+    font-size: 40pt;
+    overflow-y: scroll;
+}
+
+    #bodyContainer {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;  
+        display: -ms-grid;
+        -ms-grid-rows: 1fr;
+        -ms-grid-columns: 3fr 7fr;
+        height: 100%;
+        width: 100%;
+        font-size: 40pt;
+    }
+
+        #gameHeader {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;     
+            display: -ms-grid;
+            -ms-grid-rows: 1fr 4fr 4fr;
+            -ms-grid-columns: 1fr;
+            height: 60%!important;
+        }
+            #gameTitle {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;
+            }
+            #cheatEngine {
+                -ms-grid-row: 2;
+                -ms-grid-column: 1;
+            }
+                .ctitle {
+                    font-size: 28pt !important;
+                }
+                #cheatButtons {
+                    display: none;
+                }
+
+            #paletteContainer {
+                -ms-grid-row: 3;
+                -ms-grid-column: 1;
+                display: -ms-grid;
+                -ms-grid-rows: 1fr;
+                -ms-grid-columns: 1fr;
+            }
+                #palette {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                }
+
+        #gameBody {
+            -ms-grid-row: 1;
+            -ms-grid-column: 2;
+            display: -ms-grid;
+            -ms-grid-rows: 1fr;
+            -ms-grid-columns:1fr;
+            height: 100%;
+            margin-left: 10px;
+        }
+
+            #gameContainer {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;
+                display: -ms-grid;
+                -ms-grid-rows: 1fr 4fr 1fr;
+                -ms-grid-columns: 1fr;
+                width: auto;
+                height: auto;
+            }
+                #boardHeader {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr;
+                    -ms-grid-columns: 1fr 1fr;
+                }
+                    #timer {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                    }
+
+                    #mineCounter {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 2;
+                    }
+
+                #board {
+                    -ms-grid-row: 2;
+                    -ms-grid-column: 1;
+                    width: 850px!important;
+                    height: 850px!important;
+                    border: none;
+                }
+                    .field {
+                        width: 80px!important;
+                        height: 80px!important;
+                    }
+
+                    .board > div {
+                        margin: 1px;
+                        border-radius: 5px;
+                    }
+
+                #newGame {
+                    -ms-grid-row: 3;
+                    -ms-grid-column: 1;
+                }
+
+table {
+    
+}
+
+.emptyPalette,
+    .hiddenPalette,
+        .numberPalette{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+    .emptyPalette:hover,
+        .hiddenPalette:hover,
+            .numberPalette:hover{
+        border:solid 1px white;
+    }

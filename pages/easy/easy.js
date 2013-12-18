@@ -26,6 +26,8 @@
         ready: function (element, options) {
             $('#game').minesweeper();
 
+            $(".mineCounter").text(5);
+
             $('.emptyPalette').on('click', function (event) {
                 $('.emptyRevealed').css("background-color", event.target.id);
             });
@@ -61,9 +63,9 @@
             mineCounter,
             difficulty = {
                 'easy': { d: 10, m: 5 },
-                'beginner': { d: 12, m: 10 },
-                'intermediate': { d: 16, m: 24 },
-                'advanced': { d: 20, m: 60 }
+                'medium': { d: 12, m: 20 },
+                'pro': { d: 16, m: 40 },
+                'godlike': { d: 10, m: 99 }
             };
 
         function enablePalette() {
@@ -267,7 +269,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="field hidden revealed" />').appendTo(element);
+                    fieldElement = $('<div class="field hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -489,10 +491,15 @@
     };
 
     var Solver = function (obj, boardData, dimension) {
-        clearLogger();
-        solverLogger("Running Solver Algorithm...");
-        straightForwardAlgorithm();
+        var STRAIGHT_FORWARD = "StraightForward",
+            MULTI_BOX = "MultiBox",
+            BEST_GUESS = "BestGuess",
+            END_GAME = "EndGame";
 
+        clearLogger();
+        solverLogger("Running Solver Algorithm...");      
+        //Run
+        switchAlgorithm(STRAIGHT_FORWARD);
         function clearLogger() {
             $('#algoText').val("");
         }
@@ -510,6 +517,14 @@
                 }
             }
             return rtn;
+        }
+
+        function changeMineCounter() {
+            var m = $(".mineCounter").text() -1;
+            if (m < 0)
+                $(".mineCounter").text(0);
+            else
+                $(".mineCounter").text(m);
         }
 
         function randomGuess() {
@@ -533,7 +548,7 @@
                 for(var j = column - 1; j <= column + 1; j++){
                     if ((i >= 0) && (i <= (dimension - 1)) && (j >= 0) && (j <= (dimension - 1))) {
                         _boxes++;
-                        if (!boardData[i][j].isRevealed) {
+                        if (!boardData[i][j].isRevealed && !boardData[i][j].isFlagged) {
                             _clickableBoxes++;
                             _clickableArray.push(boardData[i][j]);
                         }
@@ -545,42 +560,135 @@
             }
             if (mines == _revealedMines && _clickableBoxes > 0) {
                 for (var i = 0; i < _clickableArray.length; i++) {
-                    obj.reveal(_clickableArray[i])
+                    animateClick(_clickableArray[i],"number");
                     isSafeBox = true;
-                    solverLogger("Field:(" + column + " | " + row + ")");
-                    solverLogger("Click:(" + _clickableArray[i].y + " | " + _clickableArray[i].x + ")");
+                    //solverLogger("Field:(" + column+1 + " | " + row+1 + ")");
+                    //solverLogger("Click:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
-                solverLogger("-----------");
+                //solverLogger("-----------");
             }
             else if (_clickableBoxes > 0 && (_revealedMines < mines) && (_clickableBoxes == (mines - _revealedMines))) {
-                solverLogger("Field:(" + column + " | " + row + ")");
+                //solverLogger("Field:(" + column + " | " + row + ")");
                 for (var i = 0; i < _clickableArray.length; i++) {
-                    obj.flag(_clickableArray[i]);
+                    animateClick(_clickableArray[i],"flag");
                     isSafeBox = true;
 
-                    solverLogger("Flag:(" + _clickableArray[i].y + " | " + _clickableArray[i].x + ")");
+                    //solverLogger("Flag:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
-                solverLogger("-----------");
+                //solverLogger("-----------");
             }
                 
             return isSafeBox;
         }
 
+        function solveMultiBox(row, column, mines) {
+            var _boxes = 0,
+                _clickableBoxes = 0,
+                _revealedMines = 0,
+                _clickableArray = [],
+                isMultiBox = false;
+
+            //Count number of boxes, clickable boxes and revealed mines
+            for (var i = row - 1; i <= row + 1; i++) {
+                for (var j = column - 1; j <= column + 1; j++) {
+                    if ((i >= 0) && (i <= (dimension - 1)) && (j >= 0) && (j <= (dimension - 1))) {
+                        _boxes++;
+                        if (!boardData[i][j].isRevealed && boardData[i][j].isText) {
+                            _clickableBoxes++;
+                            _clickableArray.push(boardData[i][j]);
+                            isMultiBox = true;
+                        }
+                    }
+                }
+            }
+            if(_clickableBoxes > 0)
+                animateClick(_clickableArray[0],"number");
+            return isMultiBox;
+        }
+
+        function animateClick(cell, type) {
+            if (type == "flag") {
+                obj.flag(cell);
+                changeMineCounter();
+            }
+            else
+                obj.reveal(cell);
+        }
+        /*ALGORITHMS*/
         function straightForwardAlgorithm() {
+            solverLogger("Running Straight Forward Algorithm");
+            var isStraightForwardAlgoWorking = false;
             if (!isGameStarted()) {
                 randomGuess();
             }
 
             for (var i = 0; i < dimension; i++) {
-                var mines,safeBoxClicked;
+                var mines;
                 for (var j = 0; j < dimension; j++) {
                     if (boardData[i][j].isRevealed && boardData[i][j].isText) {
                         mines = boardData[i][j].mineCount;
-                        getSafeBox(i, j, mines);
+                        if (getSafeBox(i, j, mines)) {
+                            isStraightForwardAlgoWorking = true;
+                        }
                     }
                 }
             }
-        };
+            
+            if (isStraightForwardAlgoWorking)
+                switchAlgorithm(STRAIGHT_FORWARD);
+            else
+                switchAlgorithm(MULTI_BOX);
+        }
+
+        function multiBoxAlgorithm() {
+            solverLogger("Running Multi Box Algorithm");
+            var isMultiBoxAlgoWorking = false;
+
+            for (var i = 0; i < dimension; i++) {
+                var mines;
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
+                        mines = boardData[i][j].mineCount;
+                        if (solveMultiBox(i, j, mines)) {
+                            isMultiBoxAlgoWorking = true;
+                            i = j = dimension;
+                        }
+                    }
+                }
+            }
+            
+            if (isMultiBoxAlgoWorking)
+                switchAlgorithm(STRAIGHT_FORWARD);
+            else
+                switchAlgorithm(BEST_GUESS);
+        }
+        
+        function bestGuessAlgorithm() {
+            solverLogger("Running Best Guess Algorithm");
+        }
+
+        function endGameAlgorithm() {
+            solverLogger("Running End Game Algorithm");
+        }
+        /*ALGORITHMS END*/
+        function switchAlgorithm(algo) {
+            switch(algo){
+                case STRAIGHT_FORWARD:
+                    straightForwardAlgorithm();
+                    break;
+                case MULTI_BOX:
+                    multiBoxAlgorithm();
+                    break;
+                case BEST_GUESS:
+                    bestGuessAlgorithm();
+                    break;
+                case END_GAME:
+                    endGameAlgorithm();
+                    break;
+            default:
+              
+            }
+        }
     };
 
     $.fn.minesweeper = function () {

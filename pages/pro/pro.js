@@ -3,36 +3,55 @@
 (function () {
     "use strict";
 
+    var appView = Windows.UI.ViewManagement.ApplicationView;
+    var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+    var nav = WinJS.Navigation;
+    var ui = WinJS.UI;
+
     //Variable Declarations
     var l,
         field,
         difficultyLevel,
         _mineCounter;
 
-    $(document).ready(function () {
-        $('#game').minesweeper();
+    ui.Pages.define("/pages/pro/pro.html", {
+        // Navigates to the groupHeaderPage. Called from the groupHeaders,
+        // keyboard shortcut and iteminvoked.
+        navigateToGroup: function (key) {
+            nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey: key });
+        },
 
-        $('#navBar').click(function () {
-            window.location.href = "/default.html";
-        });
+        // This function is called whenever a user navigates to this page. It
+        // populates the page elements with the app's data.
+        ready: function (element, options) {
+            $('#game').minesweeper();
 
-        $('#emptyPalette').on('change', function () {
-            $('.empty').css("background-color",this.value);
-        });
+            $(".mineCounter").text(40);
+            
+            $('.emptyPalette').on('click', function (event) {
+                $('.emptyRevealed').css("background-color", event.target.id);
+            });
 
-        $('#numberPalette').on('change', function () {
-            $('.field').css("color", this.value);
-        });
+            $('.numberPalette').on('click', function (event) {
+                $('.field').css("color", event.target.id);
+            });
 
-        $('#hiddenPalette').on('change', function () {
-            $('.hidden').css("background-color", this.value);
-        });
+            $('.hiddenPalette').on('click', function (event) {
+                $('.hidden').css("background-color", event.target.id);
+            });
 
-        $('#revealedPalette').on('change', function () {
-            $('.revealed').css("background-color", this.value);
-        });
+            $('.revealedPalette').on('click', function (event) {
+                $('.revealed').css("background-color", event.target.id);
+            });
+        },
     });
 
+    //customizable initial screen
+    //custom mines field
+    //multiplayer important
+    //hexagonal
+    //2 mines cannot be close to each other
+    //time limit
     var Game = function (gameElement) {
         var obj = {},
             isActive = false,
@@ -40,19 +59,42 @@
             time = 0,
             timer,
             timerElement,
-            mine = 5,
+            mine = 40,
             mineCounter,
-            difficulty =
-            {
+            difficulty = {
                 'easy': { d: 10, m: 5 },
-                'beginner': { d: 12, m: 10 },
-                'intermediate': { d: 16, m: 24 },
-                'advanced': { d: 20, m: 60 }
+                'medium': { d: 12, m: 20 },
+                'pro': { d: 16, m: 40 },
+                'godlike': { d: 10, m: 99 }
             };
+
+        function enablePalette() {
+            $('#numberPalette').prop('disabled', false);
+            $('#emptyPalette').prop('disabled', false);
+            $('#revealedPalette').prop('disabled', false);
+        }
+
+        function disablePalette() {
+            $('#numberPalette').prop('disabled', true);
+            $('#emptyPalette').prop('disabled', true);
+            $('#revealedPalette').prop('disabled', true);
+        }
+
+        function enableCheatEngine() {
+            $('.revealBox').prop('disabled', false);
+            $('.flagMine').prop('disabled', false);
+        }
+
+        function disableCheatEngine() {
+            $('.revealBox').prop('disabled', true);
+            $('.flagMine').prop('disabled', true);
+        }
 
         /*TIMER FUNCTIONS*/
         function startTimer() {
             stopTimer();
+            enablePalette();
+            enableCheatEngine();
 
             timer = window.setInterval(function () {
                 time += 0.1;
@@ -86,7 +128,7 @@
         }
 
         function resetMineCounter() {
-            mine = 5;
+            mine = 40;
             mineCounter.text(mine);
         }
 
@@ -96,10 +138,10 @@
             Windows.UI.Popups.MessageDialog(message, "Title").showAsync();
         }
         obj.start = function () {
-            difficultyLevel = difficulty["advanced"];
+            difficultyLevel = difficulty["pro"];
 
             // set game width
-            gameElement.width((difficultyLevel.d * 42) + 2);
+            gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
             board = Board(gameElement.find('.board').empty(), difficultyLevel.d, difficultyLevel.m);
@@ -120,6 +162,8 @@
             stopTimer();
             resetTimer();
             resetMineCounter();
+            //disableCheatEngine();
+            //disablePalette();
 
             isActive = true;
         };
@@ -185,10 +229,14 @@
             if (obj.isText) {
                 element.css("background-color", "black");
             }
+            if (obj.isEmpty) {
+                element.addClass('emptyRevealed');
+            }
         };
 
         obj.setEmpty = function (value) {
             obj.isEmpty = value;
+            obj.isText = false;
             element.toggleClass('empty');
         };
 
@@ -221,7 +269,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="field hidden revealed" />').appendTo(element);
+                    fieldElement = $('<div class="field hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -318,6 +366,32 @@
             return $.grep(result, condition);
         }
 
+        $('.revealBox').click(function () {
+            for (var i = 0; i < dimension; i++) {
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isText && !boardData[i][j].isRevealed) {
+                        boardData[i][j].setRevealed(true);
+
+                        if (isGameOver()) {
+                            $(obj).trigger('win');
+                        }
+                        return;
+                    }
+                }
+            }
+        });
+
+        $('.flagMine').click(function () {
+            for (var i = 0; i < dimension; i++) {
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isMine && !boardData[i][j].isFlagged) {
+                        boardData[i][j].setFlagged(true);
+                        return;
+                    }
+                }
+            }
+        });
+
         function revealBoard() {
             for (var i = 0; i < dimension; i++)
                 for (var j = 0; j < dimension; j++)
@@ -398,6 +472,11 @@
             return 2;
         };
 
+        //Solver
+        $('.algorithm').click(function () {
+            Solver(obj,boardData, dimension);
+        });
+
         // constructor
         (function init() {
             // expose fieldSelected event
@@ -411,7 +490,207 @@
         return obj;
     };
 
-    // export jquery plugin
+    var Solver = function (obj, boardData, dimension) {
+        var STRAIGHT_FORWARD = "StraightForward",
+            MULTI_BOX = "MultiBox",
+            BEST_GUESS = "BestGuess",
+            END_GAME = "EndGame";
+
+        clearLogger();
+        solverLogger("Running Solver Algorithm...");      
+        //Run
+        switchAlgorithm(STRAIGHT_FORWARD);
+        function clearLogger() {
+            $('#algoText').val("");
+        }
+        function solverLogger(txt) {
+            $('#algoText').append(txt + "\n");
+        }
+
+        function isGameStarted() {
+            var rtn = false;
+            for (var i = 0; i < dimension; i++) {
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isRevealed) {
+                        rtn = true;
+                    }
+                }
+            }
+            return rtn;
+        }
+
+        function randomGuess() {
+            solverLogger("Making a random guess!");
+            var x = Math.floor((Math.random() * dimension));
+            var y = Math.floor((Math.random() * dimension));
+
+            solverLogger("Random:(" + x + " | " + y + ")");
+            obj.reveal(boardData[x][y]);
+        }
+
+        function getSafeBox(row, column,mines) {
+            var _boxes=0,
+                _clickableBoxes=0,
+                _revealedMines=0,
+                _clickableArray = [],
+                isSafeBox = false;
+
+            //Count number of boxes, clickable boxes and revealed mines
+            for (var i = row - 1; i <= row + 1; i++){
+                for(var j = column - 1; j <= column + 1; j++){
+                    if ((i >= 0) && (i <= (dimension - 1)) && (j >= 0) && (j <= (dimension - 1))) {
+                        _boxes++;
+                        if (!boardData[i][j].isRevealed && !boardData[i][j].isFlagged) {
+                            _clickableBoxes++;
+                            _clickableArray.push(boardData[i][j]);
+                        }
+                        if (boardData[i][j].isFlagged) {
+                            _revealedMines++;
+                        }
+                    }
+                }
+            }
+            if (mines == _revealedMines && _clickableBoxes > 0) {
+                for (var i = 0; i < _clickableArray.length; i++) {
+                    animateClick(_clickableArray[i],"number");
+                    isSafeBox = true;
+                    //solverLogger("Field:(" + column+1 + " | " + row+1 + ")");
+                    //solverLogger("Click:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
+                }
+                //solverLogger("-----------");
+            }
+            else if (_clickableBoxes > 0 && (_revealedMines < mines) && (_clickableBoxes == (mines - _revealedMines))) {
+                //solverLogger("Field:(" + column + " | " + row + ")");
+                for (var i = 0; i < _clickableArray.length; i++) {
+                    animateClick(_clickableArray[i],"flag");
+                    isSafeBox = true;
+
+                    //solverLogger("Flag:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
+                }
+                //solverLogger("-----------");
+            }
+                
+            return isSafeBox;
+        }
+
+        function solveMultiBox(row, column, mines) {
+            var _boxes = 0,
+                _clickableBoxes = 0,
+                _revealedMines = 0,
+                _clickableArray = [],
+                isMultiBox = false;
+
+            //Count number of boxes, clickable boxes and revealed mines
+            for (var i = row - 1; i <= row + 1; i++) {
+                for (var j = column - 1; j <= column + 1; j++) {
+                    if ((i >= 0) && (i <= (dimension - 1)) && (j >= 0) && (j <= (dimension - 1))) {
+                        _boxes++;
+                        if (!boardData[i][j].isRevealed && boardData[i][j].isText) {
+                            _clickableBoxes++;
+                            _clickableArray.push(boardData[i][j]);
+                            isMultiBox = true;
+                        }
+                    }
+                }
+            }
+            if(_clickableBoxes > 0)
+                animateClick(_clickableArray[0],"number");
+            return isMultiBox;
+        }
+
+        function changeMineCounter() {
+            var m = $(".mineCounter").text() - 1;
+            if (m < 0)
+                $(".mineCounter").text(0);
+            else
+                $(".mineCounter").text(m);
+        }
+
+        function animateClick(cell, type) {
+            if (type == "flag") {
+                obj.flag(cell);
+                changeMineCounter();
+            }
+            else
+                obj.reveal(cell);
+        }
+        /*ALGORITHMS*/
+        function straightForwardAlgorithm() {
+            solverLogger("Running Straight Forward Algorithm");
+            var isStraightForwardAlgoWorking = false;
+            if (!isGameStarted()) {
+                randomGuess();
+            }
+
+            for (var i = 0; i < dimension; i++) {
+                var mines;
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
+                        mines = boardData[i][j].mineCount;
+                        if (getSafeBox(i, j, mines)) {
+                            isStraightForwardAlgoWorking = true;
+                        }
+                    }
+                }
+            }
+            
+            if (isStraightForwardAlgoWorking)
+                switchAlgorithm(STRAIGHT_FORWARD);
+            else
+                switchAlgorithm(MULTI_BOX);
+        }
+
+        function multiBoxAlgorithm() {
+            solverLogger("Running Multi Box Algorithm");
+            var isMultiBoxAlgoWorking = false;
+
+            for (var i = 0; i < dimension; i++) {
+                var mines;
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
+                        mines = boardData[i][j].mineCount;
+                        if (solveMultiBox(i, j, mines)) {
+                            isMultiBoxAlgoWorking = true;
+                            i = j = dimension;
+                        }
+                    }
+                }
+            }
+            
+            if (isMultiBoxAlgoWorking)
+                switchAlgorithm(STRAIGHT_FORWARD);
+            else
+                switchAlgorithm(BEST_GUESS);
+        }
+        
+        function bestGuessAlgorithm() {
+            solverLogger("Running Best Guess Algorithm");
+        }
+
+        function endGameAlgorithm() {
+            solverLogger("Running End Game Algorithm");
+        }
+        /*ALGORITHMS END*/
+        function switchAlgorithm(algo) {
+            switch(algo){
+                case STRAIGHT_FORWARD:
+                    straightForwardAlgorithm();
+                    break;
+                case MULTI_BOX:
+                    multiBoxAlgorithm();
+                    break;
+                case BEST_GUESS:
+                    bestGuessAlgorithm();
+                    break;
+                case END_GAME:
+                    endGameAlgorithm();
+                    break;
+            default:
+              
+            }
+        }
+    };
+
     $.fn.minesweeper = function () {
         Game(this);
 

@@ -54,6 +54,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="css\default.css" />
+    <Content Include="css\hex.css" />
     <Content Include="css\minesweeper.css" />
     <Content Include="images\arrow.png" />
     <Content Include="images\easy.png" />
@@ -76,9 +77,6 @@
     <Content Include="pages\easy\easy.css" />
     <Content Include="pages\easy\easy.html" />
     <Content Include="pages\easy\easy.js" />
-    <Content Include="pages\medium\medium.css" />
-    <Content Include="pages\medium\medium.html" />
-    <Content Include="pages\medium\medium.js" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />
@@ -89,6 +87,9 @@
     <Content Include="pages\groupedItems\groupedItems.html" />
     <Content Include="pages\groupedItems\groupedItems.js" />
     <Content Include="default.html" />
+    <Content Include="pages\medium\medium.css" />
+    <Content Include="pages\medium\medium.html" />
+    <Content Include="pages\medium\medium.js" />
     <Content Include="pages\multiplayer\multiplayer.css" />
     <Content Include="pages\multiplayer\multiplayer.html" />
     <Content Include="pages\multiplayer\multiplayer.js" />

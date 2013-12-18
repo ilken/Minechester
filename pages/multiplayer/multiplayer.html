@@ -9,20 +9,62 @@
         <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
         <!--Halloumi references -->
+        <link href="/css/default.css" rel="stylesheet" />
         <link href="/css/minesweeper.css" rel="stylesheet" />
         <link href="/pages/multiplayer/multiplayer.css" rel="stylesheet" />
-        <link href="/css/style.css" rel="stylesheet" />
         <script src="/js/jquery-2.0.3.min.js"></script>
         <script src="/js/jquery-ui.min.js"></script>
         <script src="/pages/multiplayer/multiplayer.js"></script>
     </head>
     <body>
         <div id="gridContainer">
-            <div id="navBar"> 
-               <span id="navArrow"><</span>
-            </div>
             <div id="bodyContainer">
-
+                <div id="gameHeader">
+                    <div id="gameTitle" >
+                        <header aria-label="Header content" role="banner">
+                            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+                                Multiplayer
+                        </header>
+                    </div>
+                    <div id="cheatEngine" >
+                        <div class="ctitle"></div>
+                        <div id="player1" class="placeBorder">
+                            <h2>Player 1</h2>
+                            <h3>Score:</h3>
+                            <div id="p1Score">
+                                0
+                            </div>
+                        </div>
+                        <div id="player 2" class="placeBorder">
+                            <h2>Player 2</h2>
+                            <h3>Score:</h3>
+                            <div id="p2Score">
+                                0
+                            </div>
+                        </div>
+                        <div id="msgBoard" class="placeBorder">
+                            <textarea id="msgBox"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div id="gameBody">
+                    <div id="gameContainer">
+                        <div id="game" class="minesweeper">                         
+                            <div id="boardHeader">
+                                <div id="timer">
+                                    <div class="timer">0</div>
+                                </div>
+                                <div id="mineCounter">
+                                    <div class="mineCounter">5</div>
+                                </div>
+                            </div>
+                            <div class="board" id="board"></div>
+                            <div id="newGame">
+                                <button class="newGame" type="button">New Game</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

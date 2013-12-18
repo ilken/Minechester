@@ -26,6 +26,9 @@
 	color: #ffffff;
 	font-weight: bold;
 }
+    .field:hover {
+        margin-top: -1px;
+    }
 
 .field.hidden.flag { 
     background: #eee url('/images/flag.png') center no-repeat !important; 

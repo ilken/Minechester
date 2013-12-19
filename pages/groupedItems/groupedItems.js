@@ -76,7 +76,22 @@
             } else {
                 // If the page is not snapped, the user invoked an item.
                 var item = Data.items.getAt(args.detail.itemIndex);
-                nav.navigate(Data.getItemUrl(item), { item: Data.getItemReference(item) });
+                if (Data.getGroupKey(item) == "group4") {
+                    if(item.title == "Cyprus"){
+                        Data.items.getAt(0).backgroundImage = "/images/Cyprus/Cyprus1.PNG";
+                        Data.items.getAt(1).backgroundImage = "/images/Cyprus/Cyprus4.PNG";
+                        Data.items.getAt(2).backgroundImage = "/images/Cyprus/Cyprus7.PNG";
+                        Data.items.getAt(3).backgroundImage = "/images/Cyprus/Cyprus2.PNG";
+                        Data.items.getAt(4).backgroundImage = "/images/Cyprus/Cyprus5.PNG";
+                        Data.items.getAt(5).backgroundImage = "/images/Cyprus/Cyprus8.PNG";
+                        Data.items.getAt(6).backgroundImage = "/images/Cyprus/Cyprus3.PNG";
+                        Data.items.getAt(7).backgroundImage = "/images/Cyprus/Cyprus6.PNG";
+                        Data.items.getAt(8).backgroundImage = "/images/Cyprus/Cyprus9.PNG";
+                    }
+                    nav.navigate("/pages/groupedItems/groupedItems.html", { item: Data.getItemReference(item) });
+                }
+                else
+                    nav.navigate(Data.getItemUrl(item), { item: Data.getItemReference(item) });
             }
         }
     });

@@ -40,13 +40,98 @@
             #cheatEngine {
                 -ms-grid-row: 2;
                 -ms-grid-column: 1;
+                display :-ms-grid;
+                -ms-grid-rows: 280px 280px 350px 250px;
+                -ms-grid-columns: 1fr;
             }
-                .ctitle {
-                    font-size: 28pt !important;
+                #player1 {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr 2fr 1fr;
+                    -ms-grid-columns: 1fr;
+                    background-color: green;
                 }
-                #cheatButtons {
-                    display: none;
+                    #p1Tag {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                    }
+                    #p1ScoreWrapper {
+                        -ms-grid-row: 2;
+                        -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr 1fr;
+                    }
+                        #p1ScoreText {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                            margin-top: 20px!important;
+                        }
+                        #p1Score {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                        #p1PlusScore {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 3;
+                        }
+                    #p1Turn {
+                        -ms-grid-row: 3;
+                        -ms-grid-column: 1;
+                        font-size: 32pt!important;
+                        color: #1c1c1c;
+                    }
+
+                #player2 {
+                    -ms-grid-row: 2;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr 2fr 1fr;
+                    -ms-grid-columns: 1fr;
                 }
+                    #p2Tag {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                    }
+                    #p2ScoreWrapper {
+                        -ms-grid-row: 2;
+                        -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr 1fr;
+                    }
+                        #p2ScoreText {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                            margin-top: 20px!important;
+                        }
+                        #p2Score {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                        #p2PlusScore {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 3;
+                            margin-top: 10px;
+                        }
+                    #p2Turn {
+                        -ms-grid-row: 3;
+                        -ms-grid-column: 1;
+                        font-size: 32pt!important;
+                        color: #1c1c1c;
+                    }
+
+                #rules {
+                    -ms-grid-row: 3;
+                    -ms-grid-column: 1;
+                }
+
+                #msgBoard {
+                    -ms-grid-row: 4;
+                    -ms-grid-column: 1;
+                }
+
 
             #paletteContainer {
                 -ms-grid-row: 3;
@@ -86,15 +171,36 @@
                     -ms-grid-rows: 1fr;
                     -ms-grid-columns: 1fr 1fr;
                 }
-                    #timer {
+                    #headerLeft {
                         -ms-grid-row: 1;
                         -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr;
                     }
-
-                    #mineCounter {
+                        #timerImg {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                        }
+                        #timer {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                    #headerRight {
                         -ms-grid-row: 1;
                         -ms-grid-column: 2;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr;
                     }
+                        #mineCounterImg {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                        }
+                        #mineCounter {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
 
                 #board {
                     -ms-grid-row: 2;
@@ -123,18 +229,9 @@
                 }
 
 table {
-    
+    font-size: 12pt!important;
+}
+.newGame {
+    width: 87%!important;
 }
 
-.emptyPalette,
-    .hiddenPalette,
-        .numberPalette{
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-}
-    .emptyPalette:hover,
-        .hiddenPalette:hover,
-            .numberPalette:hover{
-        border:solid 1px white;
-    }

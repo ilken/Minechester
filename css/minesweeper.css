@@ -39,8 +39,8 @@
 }
 
 .field.mine { 
-    background: url('/images/mine.png') center no-repeat; 
-    background-color: #ffffff;
+    background: url('/images/red_mine.png') center no-repeat; 
+    background-color: red;
 }
 
 .field.mine > span { 
@@ -97,3 +97,7 @@ textarea {
     width: 95%;
     height: 300px;
 }
+
+.button-1 {font-size: 10px;}
+.button-2 {font-size: 20px;}
+.button-3 {font-size: 30px;}

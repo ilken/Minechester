@@ -27,20 +27,81 @@
                         </header>
                     </div>
                     <div id="cheatEngine" >
-                        <div class="ctitle"></div>
                         <div id="player1" class="placeBorder">
-                            <h2>Player 1</h2>
-                            <h3>Score:</h3>
-                            <div id="p1Score">
-                                0
+                            <div id="p1Tag">
+                                <input type="text" value="Player 1" name="pname">                              
+                            </div>
+                            <div id="p1ScoreWrapper">
+                                <div id="p1ScoreText">
+                                    <h2>Score:</h2>
+                                </div>
+                                <div id="p1Score">
+                                    0
+                                </div>
+                                <div id="p1PlusScore"></div>
+                                <div id="p1Turn">
+                                    <h2>Your Turn!</h2>
+                                </div>
                             </div>
                         </div>
-                        <div id="player 2" class="placeBorder">
-                            <h2>Player 2</h2>
-                            <h3>Score:</h3>
-                            <div id="p2Score">
-                                0
+                        <div id="player2" class="placeBorder">
+                            <div id="p2Tag">
+                                <input type="text" value="Player 2" name="pname">                                
                             </div>
+                            <div id="p2ScoreWrapper">
+                                <div id="p2ScoreText">
+                                    <h2>Score:</h2>
+                                </div>
+                                <div id="p2Score">
+                                    0
+                                </div>
+                                <div id="p2PlusScore"></div>
+                                <div id="p2Turn">
+                                    <h2>Your Turn!</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="rules" class="placeBorder">
+                            <table id="rulesTable">
+                                <thead><tr><td>RULES</td></tr></thead>
+                                <tr>
+                                    <td>Player 1 starts the game.</td>
+                                </tr>
+                                <tr>
+                                    <td>Turn switches when player:</td>
+                                    <td>-hits a mine!<br />-flags a non-mine field!</td>
+                                </tr>
+                                <tr>
+                                    <td>Reveal fields to earn points!</td>
+                                </tr>
+                                <tr>
+                                    <td>Score more to win the game!</td>
+                                </tr>
+                                <tr>
+                                    <td><br />POINTS</td>
+                                </tr>
+                                <tr>
+                                    <td>Mine:</td>
+                                    <td>+500</td>
+                                </tr>
+                                <tr>
+                                    <td>Correct Flag:</td>
+                                    <td>+500</td>
+                                </tr>
+                                <tr>
+                                    <td>Wrong Flag:</td>
+                                    <td>-500</td>
+                                </tr>
+                                <tr>
+                                    <td>Number:</td>
+                                    <td>number x 100</td>
+                                </tr>
+                                <tr>
+                                    <td>Empty Field:</td>
+                                    <td>+100</td>
+                                </tr>
+
+                            </table>
                         </div>
                         <div id="msgBoard" class="placeBorder">
                             <textarea id="msgBox"></textarea>
@@ -51,12 +112,20 @@
                     <div id="gameContainer">
                         <div id="game" class="minesweeper">                         
                             <div id="boardHeader">
-                                <div id="timer">
-                                    <div class="timer">0</div>
+                                <div id="headerLeft">
+                                    <div id="timerImg">
+                                        <img src="/images/clock.png" />
+                                    </div>
+                                    <div id="timer">
+                                        <div class="timer">0</div>
+                                    </div>
                                 </div>
-                                <div id="mineCounter">
-                                    <div class="mineCounter">5</div>
-                                </div>
+                                <div id="headerRight">
+                                    <div id="mineCounterImg"></div>
+                                    <div id="mineCounter">
+                                        <div class="mineCounter">5</div>
+                                    </div>
+                                </div>           
                             </div>
                             <div class="board" id="board"></div>
                             <div id="newGame">

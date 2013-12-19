@@ -36,8 +36,9 @@
             player1 = "p1",
             player2 = "p2",
             turn = player1,
-            winner = "";       
+            winner = "";
         }
+
     });
 
     //customizable initial screen
@@ -121,15 +122,16 @@
             $(board)
                 .one('win', function () {
                     obj.stop();
-                    
-                    if (p1Score > p2Score)
-                        winner = "Player 1";
-                    else if (p2Score > p1Score)
-                        winner = "Player 2";
+                    var finalP1Score = parseInt($("#p1Score").text()),
+                        finalP2Score = parseInt($("#p2Score").text());
+                    if (finalP1Score > finalP2Score)
+                        winner = "Player 1 Win!";
+                    else if (finalP2Score > finalP1Score)
+                        winner = "Player 2 Win!";
                     else
                         winner = "Noob Draw";
 
-                    window.setTimeout(function () { displayMessage(winner + "Win"); }, 100);
+                    window.setTimeout(function () { displayMessage(winner); }, 100);
                 })
                 .one('gameover', function () {
                     obj.stop();
@@ -343,32 +345,6 @@
             return $.grep(result, condition);
         }
 
-        $('.revealBox').click(function () {
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isText && !boardData[i][j].isRevealed) {
-                        boardData[i][j].setRevealed(true);
-
-                        if (isGameOver()) {
-                            $(obj).trigger('win');
-                        }
-                        return;
-                    }
-                }
-            }
-        });
-
-        $('.flagMine').click(function () {
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isMine && !boardData[i][j].isFlagged) {
-                        boardData[i][j].setFlagged(true);
-                        return;
-                    }
-                }
-            }
-        });
-
         function revealBoard() {
             for (var i = 0; i < dimension; i++)
                 for (var j = 0; j < dimension; j++)
@@ -376,13 +352,17 @@
         };
 
         function isGameOver() {
-            var hiddenCount = 0;
+            var mC = parseInt($(".mineCounter").text()),
+                hiddenCount = 0;
 
             for (var i = 0; i < dimension; i++)
                 for (var j = 0; j < dimension; j++)
-                    if (!boardData[i][j].isRevealed) { hiddenCount++; }
+                    if (boardData[i][j].isRevealed || boardData[i][j].isFlagged)
+                        hiddenCount++;
 
-            return hiddenCount === 0;
+            if (hiddenCount == (dimension * dimension) && mC == 0)
+                return true;
+            return false;
         };
 
         function locateField(fieldElement) {
@@ -407,6 +387,7 @@
                 field.setFlagged(false);
                 changeMineCounter();
                 setMessageBox(turn + ":Ops Mine! -500 Points");
+                checkTriggerWin();
                 switchTurn();
             }
             else if (field.isRevealed && !auto) {
@@ -427,23 +408,26 @@
                 if (field.isText) {
                     setScore(turn, field.mineCount * 100);
                     setMessageBox(turn + ":Numbers +" + (field.mineCount * 100) + " Points");
+                    checkTriggerWin();
                 }
                 if (field.isEmpty) {
-                    var area = traverseBoard(field);
+                    var area = traverseBoard(field),
+                        score = 0;
 
                     for (var i = 0; i < area.length; i++) {
                         if (area[i].isEmpty || !area[i].isMine) {
                             if (area[i].isEmpty) {
-                                setScore(turn, 100);
+                                score += 100;
                                 setMessageBox(turn+":Empty Field +100 Points");
                             }
                             else if (area[i].isText) {
-                                setScore(turn, area[i].mineCount * 100);
+                                score += (area[i].mineCount * 100);
                                 setMessageBox(turn + ":Numbers +" + (area[i].mineCount * 100) + " Points");
                             }
                             obj.reveal(area[i], true);
                         }
                     }
+                    setScore(turn, score);
                 }
 
                 if (isGameOver()) {
@@ -460,7 +444,8 @@
                 if (field.isFlagged) {
                     if (field.isMine) {
                         setScore(turn, 500);
-                        setMessageBox(turn+":One Mine Down +500 Points");
+                        setMessageBox(turn + ":One Mine Down +500 Points");
+                        checkTriggerWin();
                     }
                     else {
                         setScore(turn, -500);
@@ -477,22 +462,72 @@
             return 2;
         };
 
+        function checkTriggerWin() {
+            if (isGameOver()) {
+                $(obj).trigger('win');
+                return;
+            }
+        }
+
+        function animateScore(points) {
+            //$("#animateMsg").animate({
+            //    fontSize: "60px"
+            //}, 100);
+            //$("#animateMsg").animate({
+            //    fontSize: "40px"
+            //}, 100);
+            if (points > 0)
+                $("#" + turn + "PlusScore").css('color', 'orange');
+            else
+                $("#" + turn + "PlusScore").css('color', 'red');
+
+            $("#" + turn + "PlusScore").animate({
+                top: "-1px"
+            }, 200);
+            $("#" + turn + "PlusScore").animate({
+                top: "0px"
+            }, 200);
+        }
+
         function setMessageBox(txt) {
-            $("#msgBox").append(txt+"\n");
+            $("#msgBox").append(txt + "\n");
         }
 
         function setScore(player, points) {
+            //Set Score
             var currentScore = parseInt($("#" + player + "Score").text()),
                 newScore = currentScore + points;
             if (newScore < 0) newScore = 0;
             $("#" + player + "Score").text(newScore);
+
+            //Set Plus Score
+            if (turn == player1)
+                $("#" + player2 + "PlusScore").text("");
+            else
+                $("#" + player1 + "PlusScore").text("");
+
+            if (points > 0) {
+                $("#" + player + "PlusScore").text("+" + points);
+                $("#" + turn + "PlusScore").css('color', 'green');
+            }
+            else {
+                $("#" + player + "PlusScore").text(points);
+                $("#" + turn + "PlusScore").css('color', 'red');
+            }
+            animateScore(points);
         }
 
         function switchTurn() {
-            if (turn == player1)
+            if (turn == player1) {
                 turn = player2;
-            else
+                $("#player2").css('background-color', 'green');
+                $("#player1").css('background-color', 'transparent');
+            }
+            else {
                 turn = player1;
+                $("#player1").css('background-color', 'green');
+                $("#player2").css('background-color', 'transparent');
+            }
 
             setMessageBox(turn + " is playing!");
         }

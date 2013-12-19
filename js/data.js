@@ -16,12 +16,17 @@
     WinJS.Namespace.define("Data", {
         items: groupedItems,
         groups: groupedItems.groups,
-        getItemUrl : getItemUrl,
+        getItemUrl: getItemUrl,
+        getGroupKey: getGroupKey,
         getItemReference: getItemReference,
         getItemsFromGroup: getItemsFromGroup,
         resolveGroupReference: resolveGroupReference,
         resolveItemReference: resolveItemReference
     });
+
+    function getGroupKey(item) {
+        return item.group.key;
+    }
 
     function getItemUrl(item) {
         return item.url;
@@ -78,9 +83,7 @@
             { key: "group1", title: "Classic", subtitle: "", backgroundImage: darkGray, description: groupDescription },
             { key: "group2", title: "Modern", subtitle: "", backgroundImage: lightGray, description: groupDescription },
             { key: "group3", title: "Extras", subtitle: "", backgroundImage: mediumGray, description: groupDescription },
-            { key: "group4", title: "Themes", subtitle: "", backgroundImage: lightGray, description: groupDescription },
-            { key: "group5", title: "Group Title: 5", subtitle: "", backgroundImage: mediumGray, description: groupDescription },
-            { key: "group6", title: "Group Title: 6", subtitle: "", backgroundImage: darkGray, description: groupDescription }
+            { key: "group4", title: "Themes", subtitle: "", backgroundImage: lightGray, description: groupDescription }
         ];
 
         // Each of these sample items should have a reference to a particular
@@ -90,21 +93,17 @@
             { group: uiGroups[0], title: "Medium", subtitle: "12x12", url: "/pages/medium/medium.html", description: itemDescription, content: itemContent, backgroundImage: "/images/mediumLevel.png" },
             { group: uiGroups[0], title: "Pro", subtitle: "20x20", url: "/pages/pro/pro.html", description: itemDescription, content: itemContent, backgroundImage: "/images/proLevel.png" },
             
-            { group: uiGroups[1], title: "Multiplayer", subtitle: "", url: "/pages/multiplayer/multiplayer.html", description: itemDescription, content: itemContent, backgroundImage: darkGray },
+            { group: uiGroups[1], title: "Multiplayer", subtitle: "", url: "/pages/multiplayer/multiplayer.html", description: itemDescription, content: itemContent, backgroundImage: "/images/multiplayer.png"},
+            { group: uiGroups[1], title: "Challenge AI", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
             { group: uiGroups[1], title: "Hexagonal", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
 
             { group: uiGroups[2], title: "Tutorial", subtitle: "Item Subtitle: 1", url: "", description: itemDescription, content: itemContent, backgroundImage: darkGray },
             { group: uiGroups[2], title: "High Scores", subtitle: "Item Subtitle: 2", url: "", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
             { group: uiGroups[2], title: "Achievements", subtitle: "Item Subtitle: 3", url: "", description: itemDescription, content: itemContent, backgroundImage: lightGray },
 
-            { group: uiGroups[3], title: "Universiy of Manchester", subtitle: "Item Subtitle: 1", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
+            { group: uiGroups[3], title: "University of Manchester", subtitle: "Item Subtitle: 1", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
             { group: uiGroups[3], title: "London", subtitle: "Item Subtitle: 2", description: itemDescription, content: itemContent, backgroundImage: lightGray },
-            { group: uiGroups[3], title: "Cyprus", subtitle: "Item Subtitle: 3", description: itemDescription, content: itemContent, backgroundImage: darkGray },
-
-            { group: uiGroups[4], title: "Item Title: 4", subtitle: "Item Subtitle: 4", description: itemDescription, content: itemContent, backgroundImage: lightGray },
-            { group: uiGroups[4], title: "Item Title: 5", subtitle: "Item Subtitle: 5", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
-            { group: uiGroups[4], title: "Item Title: 6", subtitle: "Item Subtitle: 6", description: itemDescription, content: itemContent, backgroundImage: darkGray },
-            { group: uiGroups[4], title: "Item Title: 7", subtitle: "Item Subtitle: 7", description: itemDescription, content: itemContent, backgroundImage: mediumGray }
+            { group: uiGroups[3], title: "Cyprus", subtitle: "Item Subtitle: 3", description: itemDescription, content: itemContent, backgroundImage: "/images/Cyprus/Cyprus.PNG" }
         ];
 
         return uiItems;

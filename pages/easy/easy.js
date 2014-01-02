@@ -8,12 +8,6 @@
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
 
-    //Variable Declarations
-    var l,
-        field,
-        difficultyLevel,
-        _mineCounter;
-
     ui.Pages.define("/pages/easy/easy.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
         // keyboard shortcut and iteminvoked.
@@ -24,7 +18,7 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            $('#game').minesweeper();
+            $('#game').easyminesweeper();
 
             $(".mineCounter").text(5);
 
@@ -33,7 +27,7 @@
             });
 
             $('.numberPalette').on('click', function (event) {
-                $('.field').css("color", event.target.id);
+                $('.easyfield').css("color", event.target.id);
             });
 
             $('.hiddenPalette').on('click', function (event) {
@@ -68,33 +62,9 @@
                 'godlike': { d: 10, m: 99 }
             };
 
-        function enablePalette() {
-            $('#numberPalette').prop('disabled', false);
-            $('#emptyPalette').prop('disabled', false);
-            $('#revealedPalette').prop('disabled', false);
-        }
-
-        function disablePalette() {
-            $('#numberPalette').prop('disabled', true);
-            $('#emptyPalette').prop('disabled', true);
-            $('#revealedPalette').prop('disabled', true);
-        }
-
-        function enableCheatEngine() {
-            $('.revealBox').prop('disabled', false);
-            $('.flagMine').prop('disabled', false);
-        }
-
-        function disableCheatEngine() {
-            $('.revealBox').prop('disabled', true);
-            $('.flagMine').prop('disabled', true);
-        }
-
         /*TIMER FUNCTIONS*/
         function startTimer() {
             stopTimer();
-            enablePalette();
-            enableCheatEngine();
 
             timer = window.setInterval(function () {
                 time += 0.1;
@@ -135,16 +105,18 @@
         /*GAME MESSAGES*/
         function displayMessage(message) {
             // Create the message dialog and set its content
-            Windows.UI.Popups.MessageDialog(message, "Title").showAsync();
+            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
-            difficultyLevel = difficulty["easy"];
+            var difficultyLevel = difficulty["easy"];
+
+            $(".mineCounter").text(difficultyLevel.m);
 
             // set game width
             gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
-            board = Board(gameElement.find('.board').empty(), difficultyLevel.d, difficultyLevel.m);
+            board = Board(gameElement.find('.easyBoard').empty(), difficultyLevel.d, difficultyLevel.m);
             board.draw();
 
             $(board)
@@ -180,7 +152,7 @@
                 board.reveal(field);
             }
             else {
-                _mineCounter = board.flag(field);
+                var _mineCounter = board.flag(field);
                 if (_mineCounter == 1)
                     decrementMineCounter();
                 else if (_mineCounter == 0)
@@ -260,7 +232,8 @@
 
     var Board = function (element, dimension, mines) {
         var obj = {},
-            boardData = [];
+            boardData = [],
+            field;
 
         function drawBoard() {
             var i, j, fieldElement;
@@ -269,7 +242,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="field hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
+                    fieldElement = $('<div class="easyfield hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -409,7 +382,7 @@
         };
 
         function locateField(fieldElement) {
-            l = fieldElement.data('location')
+            var l = fieldElement.data('location')
             return field = boardData[l.x][l.y];
         }
 
@@ -481,8 +454,8 @@
         (function init() {
             // expose fieldSelected event
             element
-                .off('mousedown', '.field')
-                .on('mousedown', '.field', function (e) {
+                .off('mousedown', '.easyfield')
+                .on('mousedown', '.easyfield', function (e) {
                     $(obj).trigger('fieldSelected', [e, locateField($(this))]);
                 });
         }());
@@ -691,7 +664,7 @@
         }
     };
 
-    $.fn.minesweeper = function () {
+    $.fn.easyminesweeper = function () {
         Game(this);
 
         return this;

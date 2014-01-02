@@ -24,7 +24,7 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            $('#game').minesweeper();
+            $('#game').prominesweeper();
 
             $(".mineCounter").text(40);
             
@@ -33,7 +33,7 @@
             });
 
             $('.numberPalette').on('click', function (event) {
-                $('.field').css("color", event.target.id);
+                $('.profield').css("color", event.target.id);
             });
 
             $('.hiddenPalette').on('click', function (event) {
@@ -135,16 +135,18 @@
         /*GAME MESSAGES*/
         function displayMessage(message) {
             // Create the message dialog and set its content
-            Windows.UI.Popups.MessageDialog(message, "Title").showAsync();
+            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
             difficultyLevel = difficulty["pro"];
+
+            $(".mineCounter").text(difficultyLevel.m);
 
             // set game width
             gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
-            board = Board(gameElement.find('.board').empty(), difficultyLevel.d, difficultyLevel.m);
+            board = Board(gameElement.find('.proBoard').empty(), difficultyLevel.d, difficultyLevel.m);
             board.draw();
 
             $(board)
@@ -269,7 +271,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="field hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
+                    fieldElement = $('<div class="profield hidden revealed" id="' + i + 'X' + j + '"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -481,8 +483,8 @@
         (function init() {
             // expose fieldSelected event
             element
-                .off('mousedown', '.field')
-                .on('mousedown', '.field', function (e) {
+                .off('mousedown', '.profield')
+                .on('mousedown', '.profield', function (e) {
                     $(obj).trigger('fieldSelected', [e, locateField($(this))]);
                 });
         }());
@@ -691,7 +693,7 @@
         }
     };
 
-    $.fn.minesweeper = function () {
+    $.fn.prominesweeper = function () {
         Game(this);
 
         return this;

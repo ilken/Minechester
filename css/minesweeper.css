@@ -11,6 +11,12 @@
 	/*box-shadow: 4px 4px 4px #aaa;*/
 }
 
+#easyBoard {
+    width: 850px!important;
+    height: 850px!important;
+    border: none;
+}
+
 .field
 {
 	width: 50px;
@@ -25,6 +31,10 @@
 	background-color: #000000;
 	color: #ffffff;
 	font-weight: bold;
+}
+.easyfield {
+    width: 80px!important;
+    height: 80px!important; 
 }
     .field:hover {
         margin-top: -1px;

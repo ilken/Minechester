@@ -107,7 +107,7 @@
         /*GAME MESSAGES*/
         function displayMessage(message) {
             // Create the message dialog and set its content
-            Windows.UI.Popups.MessageDialog(message, "Title").showAsync();
+            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
             difficultyLevel = difficulty["godlike"];

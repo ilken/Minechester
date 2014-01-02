@@ -88,6 +88,17 @@
                         Data.items.getAt(7).backgroundImage = "/images/Cyprus/Cyprus6.PNG";
                         Data.items.getAt(8).backgroundImage = "/images/Cyprus/Cyprus9.PNG";
                     }
+                    else if (item.title == "University of Manchester") {
+                        Data.items.getAt(0).backgroundImage = "/images/UOM/uni1.PNG";
+                        Data.items.getAt(1).backgroundImage = "/images/UOM/uni4.PNG";
+                        Data.items.getAt(2).backgroundImage = "/images/UOM/uni7.PNG";
+                        Data.items.getAt(3).backgroundImage = "/images/UOM/uni2.PNG";
+                        Data.items.getAt(4).backgroundImage = "/images/UOM/uni5.PNG";
+                        Data.items.getAt(5).backgroundImage = "/images/UOM/uni8.PNG";
+                        Data.items.getAt(6).backgroundImage = "/images/UOM/uni3.PNG";
+                        Data.items.getAt(7).backgroundImage = "/images/UOM/uni6.PNG";
+                        Data.items.getAt(8).backgroundImage = "/images/UOM/uni9.PNG";
+                    }
                     nav.navigate("/pages/groupedItems/groupedItems.html", { item: Data.getItemReference(item) });
                 }
                 else

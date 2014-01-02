@@ -24,16 +24,16 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            $('#game').minesweeper();
+            $('#game').mediumminesweeper();
 
-            $(".mineCounter").text(25);
-            
+            $(".mineCounter").text(20);
+
             $('.emptyPalette').on('click', function (event) {
                 $('.emptyRevealed').css("background-color", event.target.id);
             });
 
             $('.numberPalette').on('click', function (event) {
-                $('.field').css("color", event.target.id);
+                $('.mediumField').css("color", event.target.id);
             });
 
             $('.hiddenPalette').on('click', function (event) {
@@ -59,7 +59,7 @@
             time = 0,
             timer,
             timerElement,
-            mine = 20,
+            mine = 5,
             mineCounter,
             difficulty = {
                 'easy': { d: 10, m: 5 },
@@ -128,23 +128,24 @@
         }
 
         function resetMineCounter() {
-            mine = 20;
+            mine = 5;
             mineCounter.text(mine);
         }
 
         /*GAME MESSAGES*/
         function displayMessage(message) {
             // Create the message dialog and set its content
-            Windows.UI.Popups.MessageDialog(message, "Title").showAsync();
+            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
             difficultyLevel = difficulty["medium"];
 
+            $(".mineCounter").text(difficultyLevel.m);
             // set game width
             gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
-            board = Board(gameElement.find('.board').empty(), difficultyLevel.d, difficultyLevel.m);
+            board = Board(gameElement.find('.mediumBoard').empty(), difficultyLevel.d, difficultyLevel.m);
             board.draw();
 
             $(board)
@@ -162,6 +163,8 @@
             stopTimer();
             resetTimer();
             resetMineCounter();
+            //disableCheatEngine();
+            //disablePalette();
 
             isActive = true;
         };
@@ -267,7 +270,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="field hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
+                    fieldElement = $('<div class="mediumfield hidden revealed" id="' + i + 'X' + j + '"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -472,15 +475,15 @@
 
         //Solver
         $('.algorithm').click(function () {
-            Solver(obj,boardData, dimension);
+            Solver(obj, boardData, dimension);
         });
 
         // constructor
         (function init() {
             // expose fieldSelected event
             element
-                .off('mousedown', '.field')
-                .on('mousedown', '.field', function (e) {
+                .off('mousedown', '.mediumfield')
+                .on('mousedown', '.mediumfield', function (e) {
                     $(obj).trigger('fieldSelected', [e, locateField($(this))]);
                 });
         }());
@@ -495,7 +498,7 @@
             END_GAME = "EndGame";
 
         clearLogger();
-        solverLogger("Running Solver Algorithm...");      
+        solverLogger("Running Solver Algorithm...");
         //Run
         switchAlgorithm(STRAIGHT_FORWARD);
         function clearLogger() {
@@ -517,6 +520,14 @@
             return rtn;
         }
 
+        function changeMineCounter() {
+            var m = $(".mineCounter").text() - 1;
+            if (m < 0)
+                $(".mineCounter").text(0);
+            else
+                $(".mineCounter").text(m);
+        }
+
         function randomGuess() {
             solverLogger("Making a random guess!");
             var x = Math.floor((Math.random() * dimension));
@@ -526,16 +537,16 @@
             obj.reveal(boardData[x][y]);
         }
 
-        function getSafeBox(row, column,mines) {
-            var _boxes=0,
-                _clickableBoxes=0,
-                _revealedMines=0,
+        function getSafeBox(row, column, mines) {
+            var _boxes = 0,
+                _clickableBoxes = 0,
+                _revealedMines = 0,
                 _clickableArray = [],
                 isSafeBox = false;
 
             //Count number of boxes, clickable boxes and revealed mines
-            for (var i = row - 1; i <= row + 1; i++){
-                for(var j = column - 1; j <= column + 1; j++){
+            for (var i = row - 1; i <= row + 1; i++) {
+                for (var j = column - 1; j <= column + 1; j++) {
                     if ((i >= 0) && (i <= (dimension - 1)) && (j >= 0) && (j <= (dimension - 1))) {
                         _boxes++;
                         if (!boardData[i][j].isRevealed && !boardData[i][j].isFlagged) {
@@ -550,7 +561,7 @@
             }
             if (mines == _revealedMines && _clickableBoxes > 0) {
                 for (var i = 0; i < _clickableArray.length; i++) {
-                    animateClick(_clickableArray[i],"number");
+                    animateClick(_clickableArray[i], "number");
                     isSafeBox = true;
                     //solverLogger("Field:(" + column+1 + " | " + row+1 + ")");
                     //solverLogger("Click:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
@@ -560,14 +571,14 @@
             else if (_clickableBoxes > 0 && (_revealedMines < mines) && (_clickableBoxes == (mines - _revealedMines))) {
                 //solverLogger("Field:(" + column + " | " + row + ")");
                 for (var i = 0; i < _clickableArray.length; i++) {
-                    animateClick(_clickableArray[i],"flag");
+                    animateClick(_clickableArray[i], "flag");
                     isSafeBox = true;
 
                     //solverLogger("Flag:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
                 //solverLogger("-----------");
             }
-                
+
             return isSafeBox;
         }
 
@@ -591,17 +602,9 @@
                     }
                 }
             }
-            if(_clickableBoxes > 0)
-                animateClick(_clickableArray[0],"number");
+            if (_clickableBoxes > 0)
+                animateClick(_clickableArray[0], "number");
             return isMultiBox;
-        }
-
-        function changeMineCounter() {
-            var m = $(".mineCounter").text() - 1;
-            if (m < 0)
-                $(".mineCounter").text(0);
-            else
-                $(".mineCounter").text(m);
         }
 
         function animateClick(cell, type) {
@@ -631,7 +634,7 @@
                     }
                 }
             }
-            
+
             if (isStraightForwardAlgoWorking)
                 switchAlgorithm(STRAIGHT_FORWARD);
             else
@@ -654,13 +657,13 @@
                     }
                 }
             }
-            
+
             if (isMultiBoxAlgoWorking)
                 switchAlgorithm(STRAIGHT_FORWARD);
             else
                 switchAlgorithm(BEST_GUESS);
         }
-        
+
         function bestGuessAlgorithm() {
             solverLogger("Running Best Guess Algorithm");
         }
@@ -670,7 +673,7 @@
         }
         /*ALGORITHMS END*/
         function switchAlgorithm(algo) {
-            switch(algo){
+            switch (algo) {
                 case STRAIGHT_FORWARD:
                     straightForwardAlgorithm();
                     break;
@@ -683,13 +686,13 @@
                 case END_GAME:
                     endGameAlgorithm();
                     break;
-            default:
-              
+                default:
+
             }
         }
     };
 
-    $.fn.minesweeper = function () {
+    $.fn.mediumminesweeper = function () {
         Game(this);
 
         return this;

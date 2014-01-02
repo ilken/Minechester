@@ -81,6 +81,16 @@
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="images\clock.png" />
+    <Content Include="images\UOM\uni.png" />
+    <Content Include="images\UOM\uni1.PNG" />
+    <Content Include="images\UOM\uni2.PNG" />
+    <Content Include="images\UOM\uni3.PNG" />
+    <Content Include="images\UOM\uni4.PNG" />
+    <Content Include="images\UOM\uni5.PNG" />
+    <Content Include="images\UOM\uni6.PNG" />
+    <Content Include="images\UOM\uni7.PNG" />
+    <Content Include="images\UOM\uni8.PNG" />
+    <Content Include="images\UOM\uni9.PNG" />
     <Content Include="js\data.js" />
     <Content Include="js\default.js" />
     <Content Include="js\jquery-2.0.3.min.js" />

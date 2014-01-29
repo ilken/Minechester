@@ -99,6 +99,9 @@
     <Content Include="pages\easy\easy.css" />
     <Content Include="pages\easy\easy.html" />
     <Content Include="pages\easy\easy.js" />
+    <Content Include="pages\highScores\highScores.css" />
+    <Content Include="pages\highScores\highScores.html" />
+    <Content Include="pages\highScores\highScores.js" />
     <Content Include="pages\itemDetail\itemDetail.css" />
     <Content Include="pages\itemDetail\itemDetail.html" />
     <Content Include="pages\itemDetail\itemDetail.js" />

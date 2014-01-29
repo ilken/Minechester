@@ -97,9 +97,9 @@
             { group: uiGroups[1], title: "Challenge AI", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
             { group: uiGroups[1], title: "Hexagonal", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
 
-            { group: uiGroups[2], title: "Tutorial", subtitle: "Item Subtitle: 1", url: "", description: itemDescription, content: itemContent, backgroundImage: darkGray },
-            { group: uiGroups[2], title: "High Scores", subtitle: "Item Subtitle: 2", url: "", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
-            { group: uiGroups[2], title: "Achievements", subtitle: "Item Subtitle: 3", url: "", description: itemDescription, content: itemContent, backgroundImage: lightGray },
+            { group: uiGroups[2], title: "Tutorial", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: darkGray },
+            { group: uiGroups[2], title: "High Scores", subtitle: "", url: "/pages/highScores/highScores.html", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
+            { group: uiGroups[2], title: "Achievements", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: lightGray },
 
             { group: uiGroups[3], title: "University of Manchester", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: "/images/UOM/uni.png" },
             { group: uiGroups[3], title: "London", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: lightGray },

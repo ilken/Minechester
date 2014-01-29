@@ -9,11 +9,7 @@
     var ui = WinJS.UI;
 
     //Variable Declarations
-    var l,
-        field,
-        difficultyLevel,
-        _mineCounter,
-        p1Score,p2Score,
+    var p1Score,p2Score,
         player1,player2,
         turn,
         winner;
@@ -28,7 +24,7 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            $('#game').minesweeper();
+            $('#game').multiminesweeper();
             $(".mineCounter").text(99);
 
             p1Score = $("#p1Score").text(),
@@ -110,13 +106,15 @@
             Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
-            difficultyLevel = difficulty["godlike"];
+            $("#p1Score").text(0);
+            $("#p2Score").text(0);
+            var difficultyLevel = difficulty["godlike"];
 
             // set game width
             gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
-            board = Board(gameElement.find('.board').empty(), difficultyLevel.d, difficultyLevel.m);
+            board = Board(gameElement.find('.multiBoard').empty(), difficultyLevel.d, difficultyLevel.m);
             board.draw();
 
             $(board)
@@ -159,7 +157,7 @@
                 board.reveal(field);
             }
             else {
-                _mineCounter = board.flag(field);
+                var _mineCounter = board.flag(field);
                 if (_mineCounter == 1)
                     decrementMineCounter();
                 else if (_mineCounter == 0)
@@ -239,7 +237,8 @@
 
     var Board = function (element, dimension, mines) {
         var obj = {},
-            boardData = [];
+            boardData = [],
+            field;
 
         function drawBoard() {
             var i, j, fieldElement;
@@ -248,7 +247,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="field hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
+                    fieldElement = $('<div class="multifield hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -366,7 +365,7 @@
         };
 
         function locateField(fieldElement) {
-            l = fieldElement.data('location')
+            var l = fieldElement.data('location')
             return field = boardData[l.x][l.y];
         }
 
@@ -549,8 +548,8 @@
         (function init() {
             // expose fieldSelected event
             element
-                .off('mousedown', '.field')
-                .on('mousedown', '.field', function (e) {
+                .off('mousedown', '.multifield')
+                .on('mousedown', '.multifield', function (e) {
                     $(obj).trigger('fieldSelected', [e, locateField($(this))]);
                 });
         }());
@@ -750,7 +749,7 @@
         }
     };
 
-    $.fn.minesweeper = function () {
+    $.fn.multiminesweeper = function () {
         Game(this);
 
         return this;

@@ -101,7 +101,7 @@ textarea {
 body {
     color: white; 
     font-family:'Comic Sans MS';
-    border:solid 1px white;
+    border:solid 0px white;
 }
 
 #gridContainer {

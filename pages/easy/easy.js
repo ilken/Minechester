@@ -5,6 +5,7 @@
 
     var appView = Windows.UI.ViewManagement.ApplicationView;
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+    var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
 
@@ -105,7 +106,7 @@
         /*GAME MESSAGES*/
         function displayMessage(message) {
             // Create the message dialog and set its content
-            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
+            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + " seconds", message).showAsync();
         }
         obj.start = function () {
             var difficultyLevel = difficulty["easy"];
@@ -122,10 +123,12 @@
             $(board)
                 .one('win', function () {
                     obj.stop();
+                    obj.updateStatistics("win");
                     window.setTimeout(function () { displayMessage("You Win"); }, 100);
                 })
                 .one('gameover', function () {
                     obj.stop();
+                    obj.updateStatistics("lose");
                     window.setTimeout(function () { displayMessage("Game Over"); }, 100);
                 })
                 .one('fieldSelected', startTimer) // start timer on first move
@@ -134,10 +137,31 @@
             stopTimer();
             resetTimer();
             resetMineCounter();
-            //disableCheatEngine();
-            //disablePalette();
 
             isActive = true;
+        };
+
+        obj.updateStatistics = function (result) {
+            var localSettings = applicationData.current.localSettings;
+            var localFolder = applicationData.current.localFolder;
+            var gameTime = $(".timer").text();
+            var bestTime = localSettings.values["easy"];
+            var gamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
+            var gamesWon = localSettings.values["easyGamesWon"] || 0;
+            var gamesLost = localSettings.values["easyGamesLost"] || 0;
+
+            if (result == "win") {
+                if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                    localSettings.values["easy"] = gameTime;
+                }
+                localSettings.values["easyGamesWon"] = gamesWon + 1;
+                localSettings.values["easyGamesLost"] = gamesLost;
+            }
+            else if (result == "lose") {
+                localSettings.values["easyGamesWon"] = gamesWon;
+                localSettings.values["easyGamesLost"] = gamesLost + 1;
+            }
+            localSettings.values["easyGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {

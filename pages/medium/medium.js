@@ -5,14 +5,9 @@
 
     var appView = Windows.UI.ViewManagement.ApplicationView;
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+    var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
-
-    //Variable Declarations
-    var l,
-        field,
-        difficultyLevel,
-        _mineCounter;
 
     ui.Pages.define("/pages/medium/medium.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
@@ -68,33 +63,9 @@
                 'godlike': { d: 10, m: 99 }
             };
 
-        function enablePalette() {
-            $('#numberPalette').prop('disabled', false);
-            $('#emptyPalette').prop('disabled', false);
-            $('#revealedPalette').prop('disabled', false);
-        }
-
-        function disablePalette() {
-            $('#numberPalette').prop('disabled', true);
-            $('#emptyPalette').prop('disabled', true);
-            $('#revealedPalette').prop('disabled', true);
-        }
-
-        function enableCheatEngine() {
-            $('.revealBox').prop('disabled', false);
-            $('.flagMine').prop('disabled', false);
-        }
-
-        function disableCheatEngine() {
-            $('.revealBox').prop('disabled', true);
-            $('.flagMine').prop('disabled', true);
-        }
-
         /*TIMER FUNCTIONS*/
         function startTimer() {
             stopTimer();
-            enablePalette();
-            enableCheatEngine();
 
             timer = window.setInterval(function () {
                 time += 0.1;
@@ -138,7 +109,7 @@
             Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
-            difficultyLevel = difficulty["medium"];
+            var difficultyLevel = difficulty["medium"];
 
             $(".mineCounter").text(difficultyLevel.m);
             // set game width
@@ -151,10 +122,12 @@
             $(board)
                 .one('win', function () {
                     obj.stop();
+                    obj.updateStatistics("win");
                     window.setTimeout(function () { displayMessage("You Win"); }, 100);
                 })
                 .one('gameover', function () {
                     obj.stop();
+                    obj.updateStatistics("lose");
                     window.setTimeout(function () { displayMessage("Game Over"); }, 100);
                 })
                 .one('fieldSelected', startTimer) // start timer on first move
@@ -163,10 +136,31 @@
             stopTimer();
             resetTimer();
             resetMineCounter();
-            //disableCheatEngine();
-            //disablePalette();
 
             isActive = true;
+        };
+
+        obj.updateStatistics = function (result) {
+            var localSettings = applicationData.current.localSettings;
+            var localFolder = applicationData.current.localFolder;
+            var gameTime = $(".timer").text();
+            var bestTime = localSettings.values["medium"];
+            var gamesPlayed = localSettings.values["mediumGamesPlayed"] || 0;
+            var gamesWon = localSettings.values["mediumGamesWon"] || 0;
+            var gamesLost = localSettings.values["mediumGamesLost"] || 0;
+
+            if (result == "win") {
+                if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                    localSettings.values["medium"] = gameTime;
+                }
+                localSettings.values["mediumGamesWon"] = gamesWon + 1;
+                localSettings.values["mediumGamesLost"] = gamesLost;
+            }
+            else if (result == "lose") {
+                localSettings.values["mediumGamesWon"] = gamesWon;
+                localSettings.values["mediumGamesLost"] = gamesLost + 1;
+            }
+            localSettings.values["mediumGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {
@@ -181,7 +175,7 @@
                 board.reveal(field);
             }
             else {
-                _mineCounter = board.flag(field);
+                var _mineCounter = board.flag(field);
                 if (_mineCounter == 1)
                     decrementMineCounter();
                 else if (_mineCounter == 0)
@@ -261,7 +255,8 @@
 
     var Board = function (element, dimension, mines) {
         var obj = {},
-            boardData = [];
+            boardData = [],
+            field;
 
         function drawBoard() {
             var i, j, fieldElement;
@@ -410,7 +405,7 @@
         };
 
         function locateField(fieldElement) {
-            l = fieldElement.data('location')
+            var l = fieldElement.data('location')
             return field = boardData[l.x][l.y];
         }
 

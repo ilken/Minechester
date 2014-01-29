@@ -1,7 +1,106 @@
-﻿body {
+﻿.multiMinesweeper{
+    width: 600px;
+    margin: 0px;
+}
+
+.multiBoard{
+    margin-top: 10px;
+    border: 1px outset #eee;
+	width: 900px!important;
+    height: 900px!important;
+    border: none;
+}
+
+.multifield{
+	width: 40px!important;
+    height: 40px!important;
+	border: 1px inset #666;
+	float:left;
+	
+	text-align: center;
+	cursor: pointer;
+	line-height: 50px;
+	
+	background-color: #000000;
+	color: #ffffff;
+	font-weight: bold;
+
+} 
+    .multifield:hover {
+        margin-top: -1px;
+    }
+
+.multifield.hidden.flag { 
+    background: #eee url('/images/flag.png') center no-repeat !important; 
+}
+
+.multifield.hidden.flag > span { 
+    display: none; 
+}
+
+.multifield.mine { 
+    background: url('/images/red_mine.png') center no-repeat; 
+    background-color: red;
+}
+
+.multifield.mine > span { 
+    display: none; 
+}
+
+.multifield.hidden{
+    background-image:none ;
+    background-color: #eee ;
+	color: #eee !important;
+}
+
+.multifield.hidden > span { display: none !important; }
+
+.clear { clear: both; }
+
+.empty {
+    background-color: #b200ff;
+}
+
+
+span {
+    line-height: 50px;
+    font-size: 36pt!important;
+}
+
+span, button, img {
+    font-size: 25pt;
+    margin: 5px;
+    display: block;
+}
+
+.placeBorder {
+	padding: 14px 20px 20px 20px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	
+	background: -moz-linear-gradient(top, #010101, #181818);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #010101),color-stop(1, #181818));
+	
+	border: 2px solid #454545; 
+	overflow: hidden; 
+	
+	-webkit-user-select: none;
+}
+
+button {
+    width: 100%;
+}
+
+textarea {
+    width: 95%;
+    height: 300px;
+}
+
+body {
     color: white; 
     font-family:'Comic Sans MS';
-    border:solid 1px white;
+    border:solid 0px white;
 }
 
 #gridContainer {
@@ -214,7 +313,7 @@
                         height: 40px!important;
                     }
 
-                    .board > div {
+                    .multiBoard > div {
                         margin: 1px;
                         border-radius: 5px;
                     }

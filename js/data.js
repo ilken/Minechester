@@ -102,8 +102,9 @@
             { group: uiGroups[2], title: "Achievements", subtitle: "", url: "", description: itemDescription, content: itemContent, backgroundImage: lightGray },
 
             { group: uiGroups[3], title: "University of Manchester", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: "/images/UOM/uni.png" },
-            { group: uiGroups[3], title: "London", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: lightGray },
-            { group: uiGroups[3], title: "Cyprus", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: "/images/Cyprus/Cyprus.PNG" }
+            { group: uiGroups[3], title: "London", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: "images/London/London.png" },
+            { group: uiGroups[3], title: "Cyprus", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: "/images/Cyprus/Cyprus.PNG" },
+            { group: uiGroups[3], title: "Classic", subtitle: "", description: itemDescription, content: itemContent, backgroundImage: "images/classicTheme.png" }
         ];
 
         return uiItems;

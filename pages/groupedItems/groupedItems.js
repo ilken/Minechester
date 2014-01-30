@@ -99,6 +99,17 @@
                         Data.items.getAt(7).backgroundImage = "/images/UOM/uni6.PNG";
                         Data.items.getAt(8).backgroundImage = "/images/UOM/uni9.PNG";
                     }
+                    else if (item.title == "London") {
+                        Data.items.getAt(0).backgroundImage = "/images/London/London1.PNG";
+                        Data.items.getAt(1).backgroundImage = "/images/London/London4.PNG";
+                        Data.items.getAt(2).backgroundImage = "/images/London/London7.PNG";
+                        Data.items.getAt(3).backgroundImage = "/images/London/London2.PNG";
+                        Data.items.getAt(4).backgroundImage = "/images/London/London5.PNG";
+                        Data.items.getAt(5).backgroundImage = "/images/London/London8.PNG";
+                        Data.items.getAt(6).backgroundImage = "/images/London/London3.PNG";
+                        Data.items.getAt(7).backgroundImage = "/images/London/London6.PNG";
+                        Data.items.getAt(8).backgroundImage = "/images/London/London9.PNG";
+                    }
                     nav.navigate("/pages/groupedItems/groupedItems.html", { item: Data.getItemReference(item) });
                 }
                 else

@@ -184,15 +184,36 @@ body {
                     -ms-grid-rows: 1fr;
                     -ms-grid-columns: 1fr 1fr;
                 }
-                    #timer {
+                    #headerLeft {
                         -ms-grid-row: 1;
                         -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr;
                     }
-
-                    #mineCounter {
+                        #timerImg {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                        }
+                        #timer {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                    #headerRight {
                         -ms-grid-row: 1;
                         -ms-grid-column: 2;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr;
                     }
+                        #mineCounterImg {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                        }
+                        #mineCounter {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
 
                 #board {
                     -ms-grid-row: 2;

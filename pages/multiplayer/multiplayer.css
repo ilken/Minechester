@@ -103,7 +103,7 @@ body {
     border:solid 0px white;
 }
 
-#gridContainer {
+#gridContainerMM {
     display: -ms-grid;
     -ms-grid-rows: 1fr;
     -ms-grid-columns: 1fr;
@@ -112,8 +112,11 @@ body {
     font-size: 40pt;
     overflow-y: scroll;
 }
+    #bodyContainerMM > div {
+        margin-top:20px;
+    }
 
-    #bodyContainer {
+    #bodyContainerMM {
         -ms-grid-row: 1;
         -ms-grid-column: 1;  
         display: -ms-grid;
@@ -124,7 +127,7 @@ body {
         font-size: 40pt;
     }
 
-        #gameHeader {
+        #gameHeaderMM {
             -ms-grid-row: 1;
             -ms-grid-column: 1;     
             display: -ms-grid;
@@ -132,11 +135,11 @@ body {
             -ms-grid-columns: 1fr;
             height: 60%!important;
         }
-            #gameTitle {
+            #gameTitleMM {
                 -ms-grid-row: 1;
                 -ms-grid-column: 1;
             }
-            #cheatEngine {
+            #cheatEngineMM {
                 -ms-grid-row: 2;
                 -ms-grid-column: 1;
                 display :-ms-grid;
@@ -280,6 +283,7 @@ body {
                         #timerImg {
                             -ms-grid-row: 1;
                             -ms-grid-column: 1;
+
                         }
                         #timer {
                             -ms-grid-row: 1;

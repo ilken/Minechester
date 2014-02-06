@@ -12,89 +12,62 @@
 	
 	-webkit-user-select: none;
 }
-.scoreTableHeader {
-    font-size:40pt!important;
+th {
+    font-size:48px!important;
 }
-.scoreTableColumn {
+td {
     margin: 5px;
-    font-size: 32pt!important;
 }
 
-#gContainer {
+#aContainer {
     display: -ms-grid;
-    -ms-grid-rows: 1fr 5fr 5fr;
+    -ms-grid-rows: 1fr 9fr;
     -ms-grid-columns: 1fr;
     height: 100%;
     width: 100%;
+    font-size: 20pt;
+    overflow-y: scroll;
 }
-    #gContainer > div {
+    #aContainer > div {
         margin-top: 20px;
     }
-    #scoreTitle {
+    #achievementTitle {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
         margin: 10px;
-        font-size: 46pt!important;
+        font-size: 32pt!important;
     }
-    #scoreContainer {
+    #achievementContainer {
         -ms-grid-row: 2;
         -ms-grid-column: 1;
         display: -ms-grid;
         -ms-grid-rows: 1fr;
         -ms-grid-columns: 1fr 1fr 1fr 1fr;
     }
-        #scoreContainer > div {
+        #achievementContainer > div {
             margin: 10px;
         }
-        #easy {
+        #firstMoveMine {
             -ms-grid-row: 1;
             -ms-grid-column: 1;
-            height: 90%;
+            height: 20%;
             background-color: #459f48;
         }
-        #medium {
+        #winHundredGames {
             -ms-grid-row: 1;
             -ms-grid-column: 2;
-            height: 90%;
+            height: 20%;
             background-color: #ffd800;
         }
-        #pro {
+        #flagHundredMines {
             -ms-grid-row: 1;
             -ms-grid-column: 3;
-            height: 90%;
+            height: 20%;
             background-color: #ff6a00;
         }
-        #multiplayer {
+        #beatAI {
             -ms-grid-row: 1;
             -ms-grid-column: 4;
-            height: 90%;
+            height: 20%;
             background-color: #f00;
-        }
-    #AIScoreContainer {
-        -ms-grid-row: 3;
-        -ms-grid-column: 1;
-        display: -ms-grid;
-        -ms-grid-rows: 1fr;
-        -ms-grid-columns: 1fr 1fr 1fr;
-    }
-        #AIScoreContainer > div {
-            margin: 10px;
-        }
-        #AIEasy {
-            -ms-grid-row: 1;
-            -ms-grid-column: 1;
-            height: 90%;
-            background-color: #459f48;
-        }
-        #AIMedium {
-            -ms-grid-row: 1;
-            -ms-grid-column: 2;
-            height: 90%;
-            background-color: #ffd800;
-        }
-        #AIPro {
-            -ms-grid-row: 1;
-            -ms-grid-column: 3;
-            height: 90%;
-            background-color: #ff6a00;
         }

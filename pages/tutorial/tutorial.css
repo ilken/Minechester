@@ -12,20 +12,21 @@
 	
 	-webkit-user-select: none;
 }
-.scoreTableHeader {
-    font-size:40pt!important;
+th {
+    font-size:48px!important;
 }
-.scoreTableColumn {
+td {
     margin: 5px;
-    font-size: 32pt!important;
 }
 
 #gContainer {
     display: -ms-grid;
-    -ms-grid-rows: 1fr 5fr 5fr;
+    -ms-grid-rows: 1fr 9fr;
     -ms-grid-columns: 1fr;
     height: 100%;
     width: 100%;
+    font-size: 20pt;
+    overflow-y: scroll;
 }
     #gContainer > div {
         margin-top: 20px;
@@ -34,7 +35,7 @@
         -ms-grid-row: 1;
         -ms-grid-column: 1;
         margin: 10px;
-        font-size: 46pt!important;
+        font-size: 46pt;
     }
     #scoreContainer {
         -ms-grid-row: 2;
@@ -49,52 +50,24 @@
         #easy {
             -ms-grid-row: 1;
             -ms-grid-column: 1;
-            height: 90%;
+            height: 50%;
             background-color: #459f48;
         }
         #medium {
             -ms-grid-row: 1;
             -ms-grid-column: 2;
-            height: 90%;
+            height: 50%;
             background-color: #ffd800;
         }
         #pro {
             -ms-grid-row: 1;
             -ms-grid-column: 3;
-            height: 90%;
+            height: 50%;
             background-color: #ff6a00;
         }
         #multiplayer {
             -ms-grid-row: 1;
             -ms-grid-column: 4;
-            height: 90%;
+            height: 50%;
             background-color: #f00;
-        }
-    #AIScoreContainer {
-        -ms-grid-row: 3;
-        -ms-grid-column: 1;
-        display: -ms-grid;
-        -ms-grid-rows: 1fr;
-        -ms-grid-columns: 1fr 1fr 1fr;
-    }
-        #AIScoreContainer > div {
-            margin: 10px;
-        }
-        #AIEasy {
-            -ms-grid-row: 1;
-            -ms-grid-column: 1;
-            height: 90%;
-            background-color: #459f48;
-        }
-        #AIMedium {
-            -ms-grid-row: 1;
-            -ms-grid-column: 2;
-            height: 90%;
-            background-color: #ffd800;
-        }
-        #AIPro {
-            -ms-grid-row: 1;
-            -ms-grid-column: 3;
-            height: 90%;
-            background-color: #ff6a00;
         }

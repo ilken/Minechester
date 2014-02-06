@@ -385,7 +385,6 @@
                 field.setRevealed(true);
                 field.setFlagged(false);
                 changeMineCounter();
-                setMessageBox(turn + ":Ops Mine! -500 Points");
                 checkTriggerWin();
                 switchTurn();
             }
@@ -406,7 +405,6 @@
 
                 if (field.isText) {
                     setScore(turn, field.mineCount * 100);
-                    setMessageBox(turn + ":Numbers +" + (field.mineCount * 100) + " Points");
                     checkTriggerWin();
                 }
                 if (field.isEmpty) {
@@ -417,11 +415,9 @@
                         if (area[i].isEmpty || !area[i].isMine) {
                             if (area[i].isEmpty) {
                                 score += 100;
-                                setMessageBox(turn+":Empty Field +100 Points");
                             }
                             else if (area[i].isText) {
                                 score += (area[i].mineCount * 100);
-                                setMessageBox(turn + ":Numbers +" + (area[i].mineCount * 100) + " Points");
                             }
                             obj.reveal(area[i], true);
                         }
@@ -443,13 +439,11 @@
                 if (field.isFlagged) {
                     if (field.isMine) {
                         setScore(turn, 500);
-                        setMessageBox(turn + ":One Mine Down +500 Points");
                         checkTriggerWin();
                     }
                     else {
                         setScore(turn, -500);
                         field.setFlagged(!field.isFlagged);
-                        setMessageBox(turn + ":Flag Penalty -500 Points");
                         switchTurn();
                         return 2;
                     }
@@ -488,10 +482,6 @@
             }, 200);
         }
 
-        function setMessageBox(txt) {
-            $("#msgBox").append(txt + "\n");
-        }
-
         function setScore(player, points) {
             //Set Score
             var currentScore = parseInt($("#" + player + "Score").text()),
@@ -528,7 +518,6 @@
                 $("#player2").css('background-color', 'transparent');
             }
 
-            setMessageBox(turn + " is playing!");
         }
 
         function changeMineCounter() {

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Easy Level</title>
+
+        <!-- WinJS references -->
+        <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+        <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+        <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+        <!--Halloumi references -->
+        <link href="/css/default.css" rel="stylesheet" />
+        <link href="/pages/achievements/achievements.css" rel="stylesheet" />
+        <script src="/js/jquery-2.0.3.min.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
+        <script src="/pages/achievements/achievements.js"></script>
+    </head>
+    <body>
+        <div id="aContainer">
+            <div id="achievementTitle" >
+                <header aria-label="Header content" role="banner">
+                    <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+                        Achievements
+                </header>
+            </div>
+            <div id="achievementContainer">
+                <div id="firstMoveMine" class="achievementBox placeBorder">
+                    <table>
+                        <tr><th>One Move One Mine</th></tr>
+                        <tr>
+                            <td id="firstMoveMineProgress"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="winHundredGames" class="achievementBox placeBorder">
+                    <table>
+                        <tr><th>Win 100 Games</th></tr>
+                        <tr>
+                            <td id="winHundredGamesProgress"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="flagHundredMines" class="achievementBox placeBorder">
+                    <table>
+                        <tr><th>Flag 100 Mines</th></tr>
+                        <tr>
+                            <td id="flagHundredMinesProgress"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="beatAI" class="achievementBox placeBorder">
+                    <table>
+                        <tr><th>Beat AI 10 Times</th></tr>
+                        <tr>
+                            <td id="BeatAIProgress"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

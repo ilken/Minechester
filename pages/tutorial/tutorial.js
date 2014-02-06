@@ -21,8 +21,6 @@
         ready: function (element, options) {
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
-
-            /*PLAYER PART*/
             var easyBestTime = localSettings.values["easy"];
             var easyGamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
             var easyGamesWon = localSettings.values["easyGamesWon"] || 0;
@@ -52,39 +50,6 @@
             $("#proGamesPlayed").text(proGamesPlayed);
             $("#proWin").text(proGamesWon);
             $("#proLose").text(proGamesLost);
-
-            /*AI PART*/
-            var AIeasyBestTime = localSettings.values["AIEasy"];
-            var AIeasyGamesPlayed = localSettings.values["AIEasyGamesPlayed"] || 0;
-            var AIeasyGamesWon = localSettings.values["AIEasyGamesWon"] || 0;
-            var AIeasyGamesLost = localSettings.values["AIEasyGamesLost"] || 0;
-
-            $("#AIEasyBestTime").text(AIeasyBestTime);
-            $("#AIEasyGamesPlayed").text(AIeasyGamesPlayed);
-            $("#AIEasyWin").text(AIeasyGamesWon);
-            $("#AIEasyLose").text(AIeasyGamesLost);
-
-            var AImediumBestTime = localSettings.values["AIMedium"];
-            var AImediumGamesPlayed = localSettings.values["AIMediumGamesPlayed"] || 0;
-            var AImediumGamesWon = localSettings.values["AIMediumGamesWon"] || 0;
-            var AImediumGamesLost = localSettings.values["AIMediumGamesLost"] || 0;
-
-            $("#AIMediumBestTime").text(AImediumBestTime);
-            $("#AIMediumGamesPlayed").text(AImediumGamesPlayed);
-            $("#AIMediumWin").text(AImediumGamesWon);
-            $("#AIMediumLose").text(AImediumGamesLost);
-
-            var AIproBestTime = localSettings.values["AIPro"];
-            var AIproGamesPlayed = localSettings.values["AIProGamesPlayed"] || 0;
-            var AIproGamesWon = localSettings.values["AIProGamesWon"] || 0;
-            var AIproGamesLost = localSettings.values["AIProGamesLost"] || 0;
-
-            $("#AIProBestTime").text(AIproBestTime);
-            $("#AIProGamesPlayed").text(AIproGamesPlayed);
-            $("#AIProWin").text(AIproGamesWon);
-            $("#AIProLose").text(AIproGamesLost);
-
-            //localSettings.values.clear();
         }
     });
 })();

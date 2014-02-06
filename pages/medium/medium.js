@@ -8,6 +8,7 @@
     var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
+    var mediumAlgorithm;
 
     ui.Pages.define("/pages/medium/medium.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
@@ -20,6 +21,8 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
             $('#game').mediumminesweeper();
+
+            mediumAlgorithm = false;
 
             $(".mineCounter").text(20);
 
@@ -68,9 +71,9 @@
             stopTimer();
 
             timer = window.setInterval(function () {
-                time += 0.1;
-                timerElement.text(time.toFixed(1));
-            }, 100);
+                time += 0.01;
+                timerElement.text(time.toFixed(2));
+            }, 10);
 
             timerElement.text(time);
         }
@@ -109,6 +112,7 @@
             Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
+            mediumAlgorithm = false;
             var difficultyLevel = difficulty["medium"];
 
             $(".mineCounter").text(difficultyLevel.m);
@@ -144,23 +148,45 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             var gameTime = $(".timer").text();
-            var bestTime = localSettings.values["medium"];
-            var gamesPlayed = localSettings.values["mediumGamesPlayed"] || 0;
-            var gamesWon = localSettings.values["mediumGamesWon"] || 0;
-            var gamesLost = localSettings.values["mediumGamesLost"] || 0;
 
-            if (result == "win") {
-                if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                    localSettings.values["medium"] = gameTime;
+            if (!mediumAlgorithm) {
+                var bestTime = localSettings.values["medium"];
+                var gamesPlayed = localSettings.values["mediumGamesPlayed"] || 0;
+                var gamesWon = localSettings.values["mediumGamesWon"] || 0;
+                var gamesLost = localSettings.values["mediumGamesLost"] || 0;
+
+                if (result == "win") {
+                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                        localSettings.values["medium"] = gameTime;
+                    }
+                    localSettings.values["mediumGamesWon"] = gamesWon + 1;
+                    localSettings.values["mediumGamesLost"] = gamesLost;
                 }
-                localSettings.values["mediumGamesWon"] = gamesWon + 1;
-                localSettings.values["mediumGamesLost"] = gamesLost;
+                else if (result == "lose") {
+                    localSettings.values["mediumGamesWon"] = gamesWon;
+                    localSettings.values["mediumGamesLost"] = gamesLost + 1;
+                }
+                localSettings.values["mediumGamesPlayed"] = gamesPlayed + 1;
             }
-            else if (result == "lose") {
-                localSettings.values["mediumGamesWon"] = gamesWon;
-                localSettings.values["mediumGamesLost"] = gamesLost + 1;
+            else {
+                var bestTime = localSettings.values["MediumEasy"];
+                var gamesPlayed = localSettings.values["AIMediumGamesPlayed"] || 0;
+                var gamesWon = localSettings.values["AIMediumGamesWon"] || 0;
+                var gamesLost = localSettings.values["AIMediumGamesLost"] || 0;
+
+                if (result == "win") {
+                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                        localSettings.values["AIMedium"] = gameTime;
+                    }
+                    localSettings.values["AIMediumGamesWon"] = gamesWon + 1;
+                    localSettings.values["AIMediumGamesLost"] = gamesLost;
+                }
+                else if (result == "lose") {
+                    localSettings.values["AIMediumGamesWon"] = gamesWon;
+                    localSettings.values["AIMediumGamesLost"] = gamesLost + 1;
+                }
+                localSettings.values["AIMediumGamesPlayed"] = gamesPlayed + 1;
             }
-            localSettings.values["mediumGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {
@@ -470,6 +496,7 @@
 
         //Solver
         $('.algorithm').click(function () {
+            mediumAlgorithm = true;
             Solver(obj, boardData, dimension);
         });
 

@@ -8,6 +8,7 @@
     var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
+    var easyAlgorithm;
 
     ui.Pages.define("/pages/easy/easy.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
@@ -20,6 +21,8 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
             $('#game').easyminesweeper();
+
+            easyAlgorithm = false;
 
             $(".mineCounter").text(5);
 
@@ -68,9 +71,9 @@
             stopTimer();
 
             timer = window.setInterval(function () {
-                time += 0.1;
-                timerElement.text(time.toFixed(1));
-            }, 100);
+                time += 0.01;
+                timerElement.text(time.toFixed(2));
+            }, 10);
 
             timerElement.text(time);
         }
@@ -109,6 +112,7 @@
             Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + " seconds", message).showAsync();
         }
         obj.start = function () {
+            easyAlgorithm = false;
             var difficultyLevel = difficulty["easy"];
 
             $(".mineCounter").text(difficultyLevel.m);
@@ -132,7 +136,9 @@
                     window.setTimeout(function () { displayMessage("Game Over"); }, 100);
                 })
                 .one('fieldSelected', startTimer) // start timer on first move
-                .on('fieldSelected', obj.reveal);
+                .on('fieldSelected', function (e, mouseDownEvent, field) {
+                    obj.reveal(e, mouseDownEvent, field);
+                });
 
             stopTimer();
             resetTimer();
@@ -145,23 +151,45 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             var gameTime = $(".timer").text();
-            var bestTime = localSettings.values["easy"];
-            var gamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
-            var gamesWon = localSettings.values["easyGamesWon"] || 0;
-            var gamesLost = localSettings.values["easyGamesLost"] || 0;
 
-            if (result == "win") {
-                if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                    localSettings.values["easy"] = gameTime;
+            if (!easyAlgorithm) {
+                var bestTime = localSettings.values["easy"];
+                var gamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
+                var gamesWon = localSettings.values["easyGamesWon"] || 0;
+                var gamesLost = localSettings.values["easyGamesLost"] || 0;
+
+                if (result == "win") {
+                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                        localSettings.values["easy"] = gameTime;
+                    }
+                    localSettings.values["easyGamesWon"] = gamesWon + 1;
+                    localSettings.values["easyGamesLost"] = gamesLost;
                 }
-                localSettings.values["easyGamesWon"] = gamesWon + 1;
-                localSettings.values["easyGamesLost"] = gamesLost;
+                else if (result == "lose") {
+                    localSettings.values["easyGamesWon"] = gamesWon;
+                    localSettings.values["easyGamesLost"] = gamesLost + 1;
+                }
+                localSettings.values["easyGamesPlayed"] = gamesPlayed + 1;
             }
-            else if (result == "lose") {
-                localSettings.values["easyGamesWon"] = gamesWon;
-                localSettings.values["easyGamesLost"] = gamesLost + 1;
+            else {
+                var bestTime = localSettings.values["AIEasy"];
+                var gamesPlayed = localSettings.values["AIEasyGamesPlayed"] || 0;
+                var gamesWon = localSettings.values["AIEasyGamesWon"] || 0;
+                var gamesLost = localSettings.values["AIEasyGamesLost"] || 0;
+
+                if (result == "win") {
+                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                        localSettings.values["AIEasy"] = gameTime;
+                    }
+                    localSettings.values["AIEasyGamesWon"] = gamesWon + 1;
+                    localSettings.values["AIEasyGamesLost"] = gamesLost;
+                }
+                else if (result == "lose") {
+                    localSettings.values["AIEasyGamesWon"] = gamesWon;
+                    localSettings.values["AIEasyGamesLost"] = gamesLost + 1;
+                }
+                localSettings.values["AIEasyGamesPlayed"] = gamesPlayed + 1;
             }
-            localSettings.values["easyGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {
@@ -471,7 +499,8 @@
 
         //Solver
         $('.algorithm').click(function () {
-            Solver(obj,boardData, dimension);
+            easyAlgorithm = true;
+            Solver(obj, boardData, dimension);
         });
 
         // constructor

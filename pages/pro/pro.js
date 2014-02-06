@@ -8,6 +8,7 @@
     var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
+    var proAlgorithm;
 
     ui.Pages.define("/pages/pro/pro.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
@@ -20,6 +21,8 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
             $('#game').prominesweeper();
+
+            proAlgorithm = false;
 
             $(".mineCounter").text(40);
             
@@ -68,9 +71,9 @@
             stopTimer();
 
             timer = window.setInterval(function () {
-                time += 0.1;
-                timerElement.text(time.toFixed(1));
-            }, 100);
+                time += 0.01;
+                timerElement.text(time.toFixed(2));
+            }, 10);
 
             timerElement.text(time);
         }
@@ -109,6 +112,7 @@
             Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
+            proAlgorithm = false;
             var difficultyLevel = difficulty["pro"];
 
             $(".mineCounter").text(difficultyLevel.m);
@@ -145,23 +149,45 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             var gameTime = $(".timer").text();
-            var bestTime = localSettings.values["pro"];
-            var gamesPlayed = localSettings.values["proGamesPlayed"] || 0;
-            var gamesWon = localSettings.values["proGamesWon"] || 0;
-            var gamesLost = localSettings.values["proGamesLost"] || 0;
 
-            if (result == "win") {
-                if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                    localSettings.values["pro"] = gameTime;
+            if (!proAlgorithm) {
+                var bestTime = localSettings.values["pro"];
+                var gamesPlayed = localSettings.values["proGamesPlayed"] || 0;
+                var gamesWon = localSettings.values["proGamesWon"] || 0;
+                var gamesLost = localSettings.values["proGamesLost"] || 0;
+
+                if (result == "win") {
+                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                        localSettings.values["pro"] = gameTime;
+                    }
+                    localSettings.values["proGamesWon"] = gamesWon + 1;
+                    localSettings.values["proGamesLost"] = gamesLost;
                 }
-                localSettings.values["proGamesWon"] = gamesWon + 1;
-                localSettings.values["proGamesLost"] = gamesLost;
+                else if (result == "lose") {
+                    localSettings.values["proGamesWon"] = gamesWon;
+                    localSettings.values["proGamesLost"] = gamesLost + 1;
+                }
+                localSettings.values["proGamesPlayed"] = gamesPlayed + 1;
             }
-            else if (result == "lose") {
-                localSettings.values["proGamesWon"] = gamesWon;
-                localSettings.values["proGamesLost"] = gamesLost + 1;
+            else {
+                var bestTime = localSettings.values["AIPro"];
+                var gamesPlayed = localSettings.values["AIProGamesPlayed"] || 0;
+                var gamesWon = localSettings.values["AIProGamesWon"] || 0;
+                var gamesLost = localSettings.values["AIProGamesLost"] || 0;
+
+                if (result == "win") {
+                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                        localSettings.values["AIPro"] = gameTime;
+                    }
+                    localSettings.values["AIProGamesWon"] = gamesWon + 1;
+                    localSettings.values["AIProGamesLost"] = gamesLost;
+                }
+                else if (result == "lose") {
+                    localSettings.values["AIProGamesWon"] = gamesWon;
+                    localSettings.values["AIProGamesLost"] = gamesLost + 1;
+                }
+                localSettings.values["AIProGamesPlayed"] = gamesPlayed + 1;
             }
-            localSettings.values["proGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {
@@ -471,6 +497,7 @@
 
         //Solver
         $('.algorithm').click(function () {
+            proAlgorithm = true;
             Solver(obj,boardData, dimension);
         });
 

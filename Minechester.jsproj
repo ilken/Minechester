@@ -56,8 +56,10 @@
     <Content Include="css\default.css" />
     <Content Include="css\hex.css" />
     <Content Include="css\minesweeper.css" />
+    <Content Include="images\achievement.PNG" />
     <Content Include="images\arrow.png" />
     <Content Include="images\boom.png" />
+    <Content Include="images\challengeAI.PNG" />
     <Content Include="images\classicTheme.png" />
     <Content Include="images\Cyprus\Cyprus.PNG" />
     <Content Include="images\Cyprus\Cyprus1.PNG" />
@@ -73,6 +75,7 @@
     <Content Include="images\easyLevel.PNG" />
     <Content Include="images\flag.png" />
     <Content Include="images\highlight.png" />
+    <Content Include="images\highscores.PNG" />
     <Content Include="images\logo.png" />
     <Content Include="images\London\London.png" />
     <Content Include="images\London\London1.png" />
@@ -95,6 +98,7 @@
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="images\clock.png" />
+    <Content Include="images\tutorial.PNG" />
     <Content Include="images\UOM\uni.png" />
     <Content Include="images\UOM\uni1.PNG" />
     <Content Include="images\UOM\uni2.PNG" />
@@ -110,6 +114,9 @@
     <Content Include="js\jquery-2.0.3.min.js" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="pages\achievements\achievements.css" />
+    <Content Include="pages\achievements\achievements.html" />
+    <Content Include="pages\achievements\achievements.js" />
     <Content Include="pages\easy\easy.css" />
     <Content Include="pages\easy\easy.html" />
     <Content Include="pages\easy\easy.js" />
@@ -135,6 +142,9 @@
     <Content Include="pages\pro\pro.css" />
     <Content Include="pages\pro\pro.html" />
     <Content Include="pages\pro\pro.js" />
+    <Content Include="pages\tutorial\tutorial.css" />
+    <Content Include="pages\tutorial\tutorial.html" />
+    <Content Include="pages\tutorial\tutorial.js" />
     <None Include="Minechester_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

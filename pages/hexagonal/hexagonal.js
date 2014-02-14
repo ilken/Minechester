@@ -22,6 +22,28 @@
         ready: function (element, options) {
             $('#game').hexminesweeper();
             easyAlgorithm = false;
+
+            $(".mineCounter").text(40);
+
+            $('.emptyPalette').on('click', function (event) {
+                $('.emptyRevealed').closest('.hex').find('.top').css("border-bottom", "15px solid " + event.target.id);
+                $('.emptyRevealed').css("background-color", event.target.id);
+                $('.emptyRevealed').closest('.hex').find('.bottom').css("border-top", "15px solid " + event.target.id);
+            });
+
+            $('.numberPalette').on('click', function (event) {
+                $('.middle').css("color", event.target.id);
+            });
+
+            $('.hiddenPalette').on('click', function (event) {
+                $('.hidden').closest('.hex').find('.top').css("border-bottom", "15px solid " + event.target.id);
+                $('.hidden').css("background-color", event.target.id);
+                $('.hidden').closest('.hex').find('.bottom').css("border-top", "15px solid " + event.target.id);
+            });
+
+            $('.revealedPalette').on('click', function (event) {
+                $('.revealed').css("background-color", event.target.id);
+            });
         }
     });
 
@@ -38,7 +60,7 @@
             time = 0,
             timer,
             timerElement,
-            mine = 5,
+            mine = 40,
             mineCounter,
             difficulty = {
                 'easy': { d: 10, m: 5 },
@@ -83,7 +105,7 @@
         }
 
         function resetMineCounter() {
-            mine = 5;
+            mine = 40;
             mineCounter.text(mine);
         }
 
@@ -94,7 +116,7 @@
         }
         obj.start = function () {
             easyAlgorithm = false;
-            var difficultyLevel = difficulty["godlike"];
+            var difficultyLevel = difficulty["pro"];
 
             $(".mineCounter").text(difficultyLevel.m);
 

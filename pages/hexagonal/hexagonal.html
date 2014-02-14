@@ -25,14 +25,8 @@
                                 Hexagonal
                         </header>
                     </div>
-                    <div id="cheatEngineHex" >
-                        <div class="ctitle">Solver Algorithm</div>
-                        <div id="algoBox">
-                            <button class="algorithm" type="button">Algorithm</button>
-                            <textarea id="algoText"></textarea>
-                        </div>
-                        <div id="paletteContainer" class="placeBorder">
-                            <div id="palette">
+                    <div id="paletteContainerHex" class="placeBorder">
+                            <div id="paletteHex">
                                 Palette
                                 <div>Empty Boxes:
                                     <table>
@@ -51,13 +45,13 @@
                                 <div>Hidden Field
                                     <table>
                                         <tr>
-                                            <td class="hiddenPalette" id="purple" style="background-color: purple"></td>
-                                            <td class="hiddenPalette" id="red" style="background-color: red"></td>
-                                            <td class="hiddenPalette" id="yellow" style="background-color: yellow"></td>
-                                            <td class="hiddenPalette" id="green" style="background-color: green"></td>
-                                            <td class="hiddenPalette" id="blue" style="background-color: blue"></td>
-                                            <td class="hiddenPalette" id="orange" style="background-color: orange"></td>
-                                            <td class="hiddenPalette" id="white" style="background-color: white"></td>
+                                            <td class="hiddenPalette" id="Td1" style="background-color: purple"></td>
+                                            <td class="hiddenPalette" id="Td2" style="background-color: red"></td>
+                                            <td class="hiddenPalette" id="Td3" style="background-color: yellow"></td>
+                                            <td class="hiddenPalette" id="Td4" style="background-color: green"></td>
+                                            <td class="hiddenPalette" id="Td5" style="background-color: blue"></td>
+                                            <td class="hiddenPalette" id="Td6" style="background-color: orange"></td>
+                                            <td class="hiddenPalette" id="Td7" style="background-color: white"></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -65,18 +59,26 @@
                                 <div>Numbers:
                                     <table>
                                         <tr>
-                                            <td class="numberPalette" id="purple" style="background-color: purple"></td>
-                                            <td class="numberPalette" id="red" style="background-color: red"></td>
-                                            <td class="numberPalette" id="yellow" style="background-color: yellow"></td>
-                                            <td class="numberPalette" id="green" style="background-color: green"></td>
-                                            <td class="numberPalette" id="blue" style="background-color: blue"></td>
-                                            <td class="numberPalette" id="orange" style="background-color: orange"></td>
-                                            <td class="numberPalette" id="white" style="background-color: white"></td>
+                                            <td class="numberPalette" id="Td8" style="background-color: purple"></td>
+                                            <td class="numberPalette" id="Td9" style="background-color: red"></td>
+                                            <td class="numberPalette" id="Td10" style="background-color: yellow"></td>
+                                            <td class="numberPalette" id="Td11" style="background-color: green"></td>
+                                            <td class="numberPalette" id="Td12" style="background-color: blue"></td>
+                                            <td class="numberPalette" id="Td13" style="background-color: orange"></td>
+                                            <td class="numberPalette" id="Td14" style="background-color: white"></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                    <div id="cheatEngineHex" >
+                        <div class="ctitle">Solver Algorithm</div>
+                        
+                        <div id="algoBox">
+                            <button class="algorithm" type="button">Algorithm</button>
+                            <textarea id="algoText"></textarea>
+                        </div>
+                        
                     </div>
                 </div>
                 <div id="gameBodyHex">
@@ -96,7 +98,7 @@
                                         <img src="/images/boom.png" />
                                     </div>
                                     <div id="mineCounter">
-                                        <div class="mineCounter">5</div>
+                                        <div class="mineCounter">40</div>
                                     </div>
                                 </div> 
                             </div>
@@ -140,290 +142,290 @@
                                     <div id="1X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="2X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="2X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="2X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="2X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="3X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="3X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="3X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="3X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="4X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="4X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="4X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="4X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="5X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="5X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="5X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="5X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                     <div id="5X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="6X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="6X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="6X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="6X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="7X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="7X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="7X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="7X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                     <div id="7X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="8X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="8X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="8X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="8X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="9X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="9X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="9X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="9X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                     <div id="9X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="10X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="10X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="10X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="10X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="11X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="11X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="11X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="11X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                     <div id="11X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="12X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="12X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="12X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="12X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="13X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="13X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="13X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="13X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                     <div id="13X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row">
-                                    <div id="14X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="14X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="14X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="14X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                                 <div class="hex-row even">
-                                    <div id="15X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="15X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="15X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="15X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                     <div id="15X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
 
                                 </div>
                                 <div class="hex-row">
-                                    <div id="16X0" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X1" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X2" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X3" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X4" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X5" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X6" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X7" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X8" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X9" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X10" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X11" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X12" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X13" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X14" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X15" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
-                                    <div id="16X16" class="hex"><div class="top"></div><div class="middle"></div><div class="bottom"></div></div>
+                                    <div id="16X0" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X1" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X2" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X3" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X4" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X5" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X6" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X7" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X8" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X9" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X10" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X11" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X12" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X13" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X14" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X15" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
+                                    <div id="16X16" class="hex"><div class="top"></div><div class="middle hidden revealed"></div><div class="bottom"></div></div>
                                 </div>
                             </div>
                             <div id="newGame" >

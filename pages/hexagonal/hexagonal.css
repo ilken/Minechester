@@ -158,7 +158,7 @@ body {
                 -ms-grid-column: 1;
             }
             #cheatEngineHex {
-                -ms-grid-row: 2;
+                -ms-grid-row: 3;
                 -ms-grid-column: 1;
             }
                 .ctitle {
@@ -168,14 +168,14 @@ body {
                     display: none;
                 }
 
-            #paletteContainer {
-                -ms-grid-row: 3;
+            #paletteContainerHex {
+                -ms-grid-row: 2;
                 -ms-grid-column: 1;
                 display: -ms-grid;
                 -ms-grid-rows: 1fr;
                 -ms-grid-columns: 1fr;
             }
-                #palette {
+                #paletteHex {
                     -ms-grid-row: 1;
                     -ms-grid-column: 1;
                 }

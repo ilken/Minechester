@@ -94,8 +94,8 @@
             { group: uiGroups[0], title: "Pro", subtitle: "20x20", url: "/pages/pro/pro.html", description: itemDescription, content: itemContent, backgroundImage: "/images/proLevel.png" },
             
             { group: uiGroups[1], title: "Multiplayer", subtitle: "", url: "/pages/multiplayer/multiplayer.html", description: itemDescription, content: itemContent, backgroundImage: "/images/multiplayer.png"},
-            { group: uiGroups[1], title: "Challenge AI", subtitle: "", url: "/pages/multiplayer/multiplayer.html", description: itemDescription, content: itemContent, backgroundImage: "/images/challengeAI.PNG" },
-            { group: uiGroups[1], title: "Hexagonal", subtitle: "", url: "/pages/multiplayer/multiplayer.html", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
+            { group: uiGroups[1], title: "Challenge AI", subtitle: "", url: "/pages/challengeAI/challengeAI.html", description: itemDescription, content: itemContent, backgroundImage: "/images/challengeAI.PNG" },
+            { group: uiGroups[1], title: "Hexagonal", subtitle: "", url: "/pages/hexagonal/hexagonal.html", description: itemDescription, content: itemContent, backgroundImage: mediumGray },
 
             { group: uiGroups[2], title: "Tutorial", subtitle: "", url: "/pages/tutorial/tutorial.html", description: itemDescription, content: itemContent, backgroundImage: "/images/tutorial.PNG" },
             { group: uiGroups[2], title: "High Scores", subtitle: "", url: "/pages/highScores/highScores.html", description: itemDescription, content: itemContent, backgroundImage: "/images/highscores.PNG" },

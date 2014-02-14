@@ -1,0 +1,334 @@
+﻿.multiMinesweeper{
+    width: 600px;
+    margin: 0px;
+}
+
+.multiBoard{
+    margin-top: 10px;
+    border: 1px outset #eee;
+	width: 900px!important;
+    height: 900px!important;
+    border: none;
+}
+
+.multifield{
+	width: 40px!important;
+    height: 40px!important;
+	border: 1px inset #666;
+	float:left;
+	
+	text-align: center;
+	cursor: pointer;
+	line-height: 50px;
+	
+	background-color: #000000;
+	color: #ffffff;
+	font-weight: bold;
+
+} 
+    .multifield:hover {
+        margin-top: -1px;
+    }
+
+.multifield.hidden.flag { 
+    background: #eee url('/images/flag.png') center no-repeat !important; 
+}
+
+.multifield.hidden.flag > span { 
+    display: none; 
+}
+
+.multifield.mine { 
+    background: url('/images/red_mine.png') center no-repeat; 
+    background-color: red;
+}
+
+.multifield.mine > span { 
+    display: none; 
+}
+
+.multifield.hidden{
+    background-image:none ;
+    background-color: #eee ;
+	color: #eee !important;
+}
+
+.multifield.hidden > span { display: none !important; }
+
+.clear { clear: both; }
+
+.empty {
+    background-color: #b200ff;
+}
+
+
+span {
+    line-height: 50px;
+    font-size: 36pt!important;
+}
+
+span, button, img {
+    font-size: 25pt;
+    margin: 5px;
+    display: block;
+}
+
+.placeBorder {
+	padding: 14px 20px 20px 20px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	
+	background: -moz-linear-gradient(top, #010101, #181818);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #010101),color-stop(1, #181818));
+	
+	border: 2px solid #454545; 
+	overflow: hidden; 
+	
+	-webkit-user-select: none;
+}
+
+button {
+    width: 100%;
+}
+
+textarea {
+    width: 95%;
+    height: 300px;
+}
+
+body {
+    color: white; 
+    font-family:'Comic Sans MS';
+    border:solid 0px white;
+}
+
+#gridContainerAI {
+    display: -ms-grid;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: 1fr;
+    height: 100%;
+    width: 100%;
+    font-size: 40pt;
+}
+    #bodyContainerAI > div {
+        margin-top:20px;
+    }
+
+    #bodyContainerAI {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;  
+        display: -ms-grid;
+        -ms-grid-rows: 1fr;
+        -ms-grid-columns: 3fr 7fr;
+        height: 95%;
+        width: 100%;
+        font-size: 40pt;
+    }
+
+        #gameHeaderAI {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;     
+            display: -ms-grid;
+            -ms-grid-rows: 1fr 4fr 4fr;
+            -ms-grid-columns: 1fr;
+            height: 60%!important;
+        }
+            #gameTitleAI {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;
+            }
+            #cheatEngineAI {
+                -ms-grid-row: 2;
+                -ms-grid-column: 1;
+                display :-ms-grid;
+                -ms-grid-rows: 280px 280px 350px;
+                -ms-grid-columns: 1fr;
+            }
+                #player1 {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr 2fr 1fr;
+                    -ms-grid-columns: 1fr;
+                    background-color: green;
+                }
+                    #p1Tag {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                    }
+                    #p1ScoreWrapper {
+                        -ms-grid-row: 2;
+                        -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr 1fr;
+                    }
+                        #p1ScoreText {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                            margin-top: 20px!important;
+                        }
+                        #p1Score {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                        #p1PlusScore {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 3;
+                        }
+                    #p1Turn {
+                        -ms-grid-row: 3;
+                        -ms-grid-column: 1;
+                        font-size: 32pt!important;
+                        color: #1c1c1c;
+                    }
+
+                #player2 {
+                    -ms-grid-row: 2;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr 2fr 1fr;
+                    -ms-grid-columns: 1fr;
+                }
+                    #p2Tag {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                    }
+                    #p2ScoreWrapper {
+                        -ms-grid-row: 2;
+                        -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr 1fr;
+                    }
+                        #p2ScoreText {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                            margin-top: 20px!important;
+                        }
+                        #p2Score {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                        #p2PlusScore {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 3;
+                            margin-top: 10px;
+                        }
+                    #p2Turn {
+                        -ms-grid-row: 3;
+                        -ms-grid-column: 1;
+                        font-size: 32pt!important;
+                        color: #1c1c1c;
+                    }
+
+                #rules {
+                    -ms-grid-row: 3;
+                    -ms-grid-column: 1;
+                    font-size: 18pt!important;
+                }
+
+            #paletteContainer {
+                -ms-grid-row: 3;
+                -ms-grid-column: 1;
+                display: -ms-grid;
+                -ms-grid-rows: 1fr;
+                -ms-grid-columns: 1fr;
+            }
+                #palette {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                }
+
+        #gameBody {
+            -ms-grid-row: 1;
+            -ms-grid-column: 2;
+            display: -ms-grid;
+            -ms-grid-rows: 1fr;
+            -ms-grid-columns:1fr;
+            height: 90%;
+            margin-left: 10px;
+        }
+
+            #gameContainer {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;
+                display: -ms-grid;
+                -ms-grid-rows: 1fr 4fr 1fr;
+                -ms-grid-columns: 1fr;
+                width: auto;
+                height: auto;
+            }
+                #boardHeader {
+                    -ms-grid-row: 1;
+                    -ms-grid-column: 1;
+                    display: -ms-grid;
+                    -ms-grid-rows: 1fr;
+                    -ms-grid-columns: 1fr 1fr;
+                }
+                    #headerLeft {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 1;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr;
+                    }
+                        #timerImg {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+
+                        }
+                        #timer {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+                    #headerRight {
+                        -ms-grid-row: 1;
+                        -ms-grid-column: 2;
+                        display: -ms-grid;
+                        -ms-grid-rows: 1fr;
+                        -ms-grid-columns: 1fr 1fr;
+                    }
+                        #mineCounterImg {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 1;
+                        }
+                        #mineCounter {
+                            -ms-grid-row: 1;
+                            -ms-grid-column: 2;
+                        }
+
+                #board {
+                    -ms-grid-row: 2;
+                    -ms-grid-column: 1;
+                    width: 900px!important;
+                    height: 875px!important;
+                    border: none;
+                }
+                    .field {
+                        width: 40px!important;
+                        height: 40px!important;
+                    }
+
+                    .multiBoard > div {
+                        margin: 1px;
+                        border-radius: 5px;
+                    }
+                    span {
+                        line-height: 30px!important;
+                        font-size: 24pt!important;
+                    }
+
+                #newGame {
+                    -ms-grid-row: 3;
+                    -ms-grid-column: 1;
+                }
+
+#rulesTable {
+    font-size: 12pt!important;
+}
+.newGame {
+    width: 87%!important;
+}
+

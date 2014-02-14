@@ -5,12 +5,16 @@
 
     var appView = Windows.UI.ViewManagement.ApplicationView;
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
-    var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
-    var easyAlgorithm;
 
-    ui.Pages.define("/pages/easy/easy.html", {
+    //Variable Declarations
+    var p1Score,p2Score,
+        player1,player2,
+        turn,
+        winner;
+
+    ui.Pages.define("/pages/challengeAI/challengeAI.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
         // keyboard shortcut and iteminvoked.
         navigateToGroup: function (key) {
@@ -20,28 +24,17 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            $('#game').easyminesweeper();
+            $('#game').aiminesweeper();
+            $(".mineCounter").text(99);
 
-            easyAlgorithm = false;
+            p1Score = $("#p1Score").text(),
+            p2Score = $("#p2Score").text(),
+            player1 = "p1",
+            player2 = "p2",
+            turn = player1,
+            winner = "";
+        }
 
-            $(".mineCounter").text(5);
-
-            $('.emptyPalette').on('click', function (event) {
-                $('.emptyRevealed').css("background-color", event.target.id);
-            });
-
-            $('.numberPalette').on('click', function (event) {
-                $('.easyfield').css("color", event.target.id);
-            });
-
-            $('.hiddenPalette').on('click', function (event) {
-                $('.hidden').css("background-color", event.target.id);
-            });
-
-            $('.revealedPalette').on('click', function (event) {
-                $('.revealed').css("background-color", event.target.id);
-            });
-        },
     });
 
     //customizable initial screen
@@ -57,13 +50,13 @@
             time = 0,
             timer,
             timerElement,
-            mine = 5,
+            mine = 99,
             mineCounter,
             difficulty = {
-                'easy': { d: 10, m: 5 },
-                'medium': { d: 12, m: 20 },
-                'pro': { d: 16, m: 40 },
-                'godlike': { d: 10, m: 99 }
+                'easy': { d: 10, m: 15 },
+                'medium': { d: 12, m: 10 },
+                'pro': { d: 16, m: 24 },
+                'godlike': { d: 20, m: 99 }
             };
 
         /*TIMER FUNCTIONS*/
@@ -79,7 +72,7 @@
         }
 
         function resetTimer() {
-            time = 0;
+            time = 0.00;
             timerElement.text(time);
         }
 
@@ -89,109 +82,67 @@
 
         /*MINE COUNTER FUNCTIONS*/
         function incrementMineCounter() {
-            mine += 1;
-            mineCounter.text(mine);
+            var mC = parseInt($(".mineCounter").text());
+            mC += 1;
+            $(".mineCounter").text(mC);
         }
 
         function decrementMineCounter() {
-            mine -= 1;
-            if (mine < 0)
-                mineCounter.text(0);
+            var mC = parseInt($(".mineCounter").text());
+            mC -= 1;
+            if (mC < 0)
+                $(".mineCounter").text(0);
             else
-                mineCounter.text(mine);
+                $(".mineCounter").text(mC);
         }
 
         function resetMineCounter() {
-            mine = 5;
-            mineCounter.text(mine);
+            $(".mineCounter").text(99);
         }
 
         /*GAME MESSAGES*/
         function displayMessage(message) {
             // Create the message dialog and set its content
-            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + " seconds", message).showAsync();
+            Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + "seconds", message).showAsync();
         }
         obj.start = function () {
-            easyAlgorithm = false;
-            var difficultyLevel = difficulty["easy"];
-
-            $(".mineCounter").text(difficultyLevel.m);
+            $("#p1Score").text(0);
+            $("#p2Score").text(0);
+            var difficultyLevel = difficulty["godlike"];
 
             // set game width
             gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
-            board = Board(gameElement.find('.easyBoard').empty(), difficultyLevel.d, difficultyLevel.m);
+            board = Board(gameElement.find('.multiBoard').empty(), difficultyLevel.d, difficultyLevel.m);
             board.draw();
 
             $(board)
                 .one('win', function () {
                     obj.stop();
-                    obj.updateStatistics("win");
-                    window.setTimeout(function () { displayMessage("You Win"); }, 100);
+                    var finalP1Score = parseInt($("#p1Score").text()),
+                        finalP2Score = parseInt($("#p2Score").text());
+                    if (finalP1Score > finalP2Score)
+                        winner = "Player 1 Win!";
+                    else if (finalP2Score > finalP1Score)
+                        winner = "Player 2 Win!";
+                    else
+                        winner = "Noob Draw";
+
+                    window.setTimeout(function () { displayMessage(winner); }, 100);
                 })
                 .one('gameover', function () {
                     obj.stop();
-                    obj.updateStatistics("lose");
                     window.setTimeout(function () { displayMessage("Game Over"); }, 100);
                 })
                 .one('fieldSelected', startTimer) // start timer on first move
-                .on('fieldSelected', function (e, mouseDownEvent, field) {
-                    obj.reveal(e, mouseDownEvent, field);
-                });
+                .on('fieldSelected', obj.reveal);
 
             stopTimer();
             resetTimer();
             resetMineCounter();
 
             isActive = true;
-        };
-
-        obj.updateStatistics = function (result) {
-            var localSettings = applicationData.current.localSettings;
-            var localFolder = applicationData.current.localFolder;
-            var gameTime = $(".timer").text();
-            var totalGamesPlayed = localSettings.values["totalGamesPlayed"] || 0;
-            localSettings.values["totalGamesPlayed"] = totalGamesPlayed + 1;
-
-            if (!easyAlgorithm) {
-                var bestTime = localSettings.values["easy"];
-                var gamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
-                var gamesWon = localSettings.values["easyGamesWon"] || 0;
-                var gamesLost = localSettings.values["easyGamesLost"] || 0;
-
-                if (result == "win") {
-                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                        localSettings.values["easy"] = gameTime;
-                    }
-                    localSettings.values["easyGamesWon"] = gamesWon + 1;
-                    localSettings.values["easyGamesLost"] = gamesLost;
-                }
-                else if (result == "lose") {
-                    localSettings.values["easyGamesWon"] = gamesWon;
-                    localSettings.values["easyGamesLost"] = gamesLost + 1;
-                }
-                localSettings.values["easyGamesPlayed"] = gamesPlayed + 1;
-            }
-            else {
-                var bestTime = localSettings.values["AIEasy"];
-                var gamesPlayed = localSettings.values["AIEasyGamesPlayed"] || 0;
-                var gamesWon = localSettings.values["AIEasyGamesWon"] || 0;
-                var gamesLost = localSettings.values["AIEasyGamesLost"] || 0;
-
-                if (result == "win") {
-                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                        localSettings.values["AIEasy"] = gameTime;
-                    }
-                    localSettings.values["AIEasyGamesWon"] = gamesWon + 1;
-                    localSettings.values["AIEasyGamesLost"] = gamesLost;
-                }
-                else if (result == "lose") {
-                    localSettings.values["AIEasyGamesWon"] = gamesWon;
-                    localSettings.values["AIEasyGamesLost"] = gamesLost + 1;
-                }
-                localSettings.values["AIEasyGamesPlayed"] = gamesPlayed + 1;
-            }
         };
 
         obj.stop = function () {
@@ -296,7 +247,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="easyfield hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
+                    fieldElement = $('<div class="multifield hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -393,32 +344,6 @@
             return $.grep(result, condition);
         }
 
-        $('.revealBox').click(function () {
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isText && !boardData[i][j].isRevealed) {
-                        boardData[i][j].setRevealed(true);
-
-                        if (isGameOver()) {
-                            $(obj).trigger('win');
-                        }
-                        return;
-                    }
-                }
-            }
-        });
-
-        $('.flagMine').click(function () {
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isMine && !boardData[i][j].isFlagged) {
-                        boardData[i][j].setFlagged(true);
-                        return;
-                    }
-                }
-            }
-        });
-
         function revealBoard() {
             for (var i = 0; i < dimension; i++)
                 for (var j = 0; j < dimension; j++)
@@ -426,13 +351,17 @@
         };
 
         function isGameOver() {
-            var hiddenCount = 0;
+            var mC = parseInt($(".mineCounter").text()),
+                hiddenCount = 0;
 
             for (var i = 0; i < dimension; i++)
                 for (var j = 0; j < dimension; j++)
-                    if (!boardData[i][j].isRevealed) { hiddenCount++; }
+                    if (boardData[i][j].isRevealed || boardData[i][j].isFlagged)
+                        hiddenCount++;
 
-            return hiddenCount === mines;
+            if (hiddenCount == (dimension * dimension) && mC == 0)
+                return true;
+            return false;
         };
 
         function locateField(fieldElement) {
@@ -450,10 +379,14 @@
             // do not reveal flagged and revealed fields in auto mode
             if (field.isFlagged || (auto && field.isRevealed)) { return; }
 
-            if (field.isMine) {
-                revealBoard();
-                $(obj).trigger('gameover');
-                return;
+            if (field.isMine && field.isRevealed){ return; }
+            if (field.isMine && !field.isRevealed) {
+                setScore(turn, -100);
+                field.setRevealed(true);
+                field.setFlagged(false);
+                changeMineCounter();
+                checkTriggerWin();
+                switchTurn();
             }
             else if (field.isRevealed && !auto) {
                 var flaggedMines = traverseBoard(field, function (f) { return f.isFlagged; });
@@ -470,14 +403,26 @@
                 field.setRevealed(true);
                 field.setFlagged(false);
 
+                if (field.isText) {
+                    setScore(turn, field.mineCount * 100);
+                    checkTriggerWin();
+                }
                 if (field.isEmpty) {
-                    var area = traverseBoard(field);
+                    var area = traverseBoard(field),
+                        score = 0;
 
                     for (var i = 0; i < area.length; i++) {
                         if (area[i].isEmpty || !area[i].isMine) {
+                            if (area[i].isEmpty) {
+                                score += 100;
+                            }
+                            else if (area[i].isText) {
+                                score += (area[i].mineCount * 100);
+                            }
                             obj.reveal(area[i], true);
                         }
                     }
+                    setScore(turn, score);
                 }
 
                 if (isGameOver()) {
@@ -491,77 +436,133 @@
             if (!field.isRevealed) {
                 field.setFlagged(!field.isFlagged);
 
-                if (field.isFlagged)
+                if (field.isFlagged) {
+                    if (field.isMine) {
+                        setScore(turn, 500);
+                        checkTriggerWin();
+                    }
+                    else {
+                        setScore(turn, -500);
+                        field.setFlagged(!field.isFlagged);
+                        switchTurn();
+                        return 2;
+                    }
                     return 1;
+                }
                 else
                     return 0;
             }
             return 2;
         };
 
-        //Solver
-        $('.algorithm').click(function () {
-            easyAlgorithm = true;
-            Solver(obj, boardData, dimension);
-        });
-
-        // constructor
-        (function init() {
-            // expose fieldSelected event
-            element
-                .off('mousedown', '.easyfield')
-                .on('mousedown', '.easyfield', function (e) {
-                    $(obj).trigger('fieldSelected', [e, locateField($(this))]);
-                });
-        }());
-
-        return obj;
-    };
-
-    var Solver = function (obj, boardData, dimension) {
-        var STRAIGHT_FORWARD = "StraightForward",
-            MULTI_BOX = "MultiBox",
-            BEST_GUESS = "BestGuess",
-            END_GAME = "EndGame";
-
-        clearLogger();
-        solverLogger("Running Solver Algorithm...");      
-        //Run
-        switchAlgorithm(STRAIGHT_FORWARD);
-        function clearLogger() {
-            $('#algoText').val("");
-        }
-        function solverLogger(txt) {
-            $('#algoText').append(txt + "\n");
-        }
-
-        function isGameStarted() {
-            var rtn = false;
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isRevealed) {
-                        rtn = true;
-                    }
-                }
+        function checkTriggerWin() {
+            if (isGameOver()) {
+                $(obj).trigger('win');
+                return;
             }
-            return rtn;
+        }
+
+        function animateScore(points) {
+            if (points > 0)
+                $("#" + turn + "PlusScore").css('color', 'orange');
+            else
+                $("#" + turn + "PlusScore").css('color', 'red');
+
+            $("#" + turn + "PlusScore").animate({
+                top: "-1px"
+            }, 200);
+            $("#" + turn + "PlusScore").animate({
+                top: "0px"
+            }, 200);
+        }
+
+        function setScore(player, points) {
+            //Set Score
+            var currentScore = parseInt($("#" + player + "Score").text()),
+                newScore = currentScore + points;
+            if (newScore < 0) newScore = 0;
+            $("#" + player + "Score").text(newScore);
+
+            //Set Plus Score
+            if (turn == player1)
+                $("#" + player2 + "PlusScore").text("");
+            else
+                $("#" + player1 + "PlusScore").text("");
+
+            if (points > 0) {
+                $("#" + player + "PlusScore").text("+" + points);
+                $("#" + turn + "PlusScore").css('color', 'green');
+            }
+            else {
+                $("#" + player + "PlusScore").text(points);
+                $("#" + turn + "PlusScore").css('color', 'red');
+            }
+            animateScore(points);
+        }
+
+        function switchTurn() {
+            if (turn == player1) {
+                turn = player2;
+                $("#player2").css('background-color', 'green');
+                $("#player1").css('background-color', 'transparent');
+                switchAlgorithm("StraightForward");
+            }
+            else {
+                turn = player1;
+                $("#player1").css('background-color', 'green');
+                $("#player2").css('background-color', 'transparent');
+            }
+
         }
 
         function changeMineCounter() {
-            var m = $(".mineCounter").text() -1;
-            if (m < 0)
+            var mC = parseInt($(".mineCounter").text());
+            mC -= 1;
+            if (mC < 0)
                 $(".mineCounter").text(0);
             else
-                $(".mineCounter").text(m);
+                $(".mineCounter").text(mC);
+        }
+
+        function switchAlgorithm(algo) {
+            switch (algo) {
+                case "StraightForward":
+                    straightForwardAlgorithm();
+                    break;
+                case "RandomGuess":
+                    randomGuess();
+                    break;
+                default:
+
+            }
         }
 
         function randomGuess() {
-            solverLogger("Making a random guess!");
-            var x = Math.floor((Math.random() * dimension));
-            var y = Math.floor((Math.random() * dimension));
+            do {
+                var x = Math.floor((Math.random() * dimension));
+                var y = Math.floor((Math.random() * dimension));
+            } while (!boardData[x][y].isRevealed);
 
-            solverLogger("Random:(" + x + " | " + y + ")");
             obj.reveal(boardData[x][y]);
+        }
+
+        function straightForwardAlgorithm() {
+            var isStraightForwardAlgoWorking = false;
+
+            for (var i = 0; i < dimension; i++) {
+                var mines;
+                for (var j = 0; j < dimension; j++) {
+                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
+                        mines = boardData[i][j].mineCount;
+                        if (getSafeBox(i, j, mines)) {
+                            isStraightForwardAlgoWorking = true;
+                        }
+                    }
+                }
+            }
+            
+            if (!isStraightForwardAlgoWorking)
+                switchAlgorithm("RandomGuess");
         }
 
         function getSafeBox(row, column,mines) {
@@ -587,139 +588,54 @@
                 }
             }
             if (mines == _revealedMines && _clickableBoxes > 0) {
-                for (var i = 0; i < _clickableArray.length; i++) {
-                    animateClick(_clickableArray[i],"number");
-                    isSafeBox = true;
-                    //solverLogger("Field:(" + column+1 + " | " + row+1 + ")");
-                    //solverLogger("Click:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
-                }
-                //solverLogger("-----------");
+                //for (var i = 0; i < _clickableArray.length; i++) {
+                //    animateClick(_clickableArray[i],"number");
+                //    isSafeBox = true;
+                //}
+                animateClick(_clickableArray[0], "number");
+                isSafeBox = true;
             }
             else if (_clickableBoxes > 0 && (_revealedMines < mines) && (_clickableBoxes == (mines - _revealedMines))) {
-                //solverLogger("Field:(" + column + " | " + row + ")");
-                for (var i = 0; i < _clickableArray.length; i++) {
-                    animateClick(_clickableArray[i],"flag");
-                    isSafeBox = true;
-
-                    //solverLogger("Flag:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
-                }
-                //solverLogger("-----------");
+                //for (var i = 0; i < _clickableArray.length; i++) {
+                //    animateClick(_clickableArray[i],"flag");
+                //    isSafeBox = true;
+                //}
+                animateClick(_clickableArray[0], "flag");
+                isSafeBox = true;
             }
                 
             return isSafeBox;
         }
 
-        function solveMultiBox(row, column, mines) {
-            var _boxes = 0,
-                _clickableBoxes = 0,
-                _revealedMines = 0,
-                _clickableArray = [],
-                isMultiBox = false;
-
-            //Count number of boxes, clickable boxes and revealed mines
-            for (var i = row - 1; i <= row + 1; i++) {
-                for (var j = column - 1; j <= column + 1; j++) {
-                    if ((i >= 0) && (i <= (dimension - 1)) && (j >= 0) && (j <= (dimension - 1))) {
-                        _boxes++;
-                        if (!boardData[i][j].isRevealed && boardData[i][j].isText) {
-                            _clickableBoxes++;
-                            _clickableArray.push(boardData[i][j]);
-                            isMultiBox = true;
-                        }
-                    }
-                }
-            }
-            if(_clickableBoxes > 0)
-                animateClick(_clickableArray[0],"number");
-            return isMultiBox;
-        }
-
         function animateClick(cell, type) {
-            if (type == "flag") {
-                obj.flag(cell);
-                changeMineCounter();
-            }
+            if (type == "flag")
+                window.setTimeout(function () { obj.flag(cell) }, 100);
             else
-                obj.reveal(cell);
-        }
-        /*ALGORITHMS*/
-        function straightForwardAlgorithm() {
-            solverLogger("Running Straight Forward Algorithm");
-            var isStraightForwardAlgoWorking = false;
-            if (!isGameStarted()) {
-                randomGuess();
-            }
-
-            for (var i = 0; i < dimension; i++) {
-                var mines;
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
-                        mines = boardData[i][j].mineCount;
-                        if (getSafeBox(i, j, mines)) {
-                            isStraightForwardAlgoWorking = true;
-                        }
-                    }
-                }
-            }
-            
-            if (isStraightForwardAlgoWorking)
-                switchAlgorithm(STRAIGHT_FORWARD);
-            else
-                switchAlgorithm(MULTI_BOX);
+                window.setTimeout(function () { obj.reveal(cell) }, 100);
         }
 
-        function multiBoxAlgorithm() {
-            solverLogger("Running Multi Box Algorithm");
-            var isMultiBoxAlgoWorking = false;
+        // constructor
+        (function init() {
+            // expose fieldSelected event
+            element
+                .off('mousedown', '.multifield')
+                .on('mousedown', '.multifield', function (e) {
+                    $(obj).trigger('fieldSelected', [e, locateField($(this))]);
+                });
+        }());
 
-            for (var i = 0; i < dimension; i++) {
-                var mines;
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
-                        mines = boardData[i][j].mineCount;
-                        if (solveMultiBox(i, j, mines)) {
-                            isMultiBoxAlgoWorking = true;
-                            i = j = dimension;
-                        }
-                    }
-                }
-            }
-            
-            if (isMultiBoxAlgoWorking)
-                switchAlgorithm(STRAIGHT_FORWARD);
-            else
-                switchAlgorithm(BEST_GUESS);
-        }
-        
-        function bestGuessAlgorithm() {
-            solverLogger("Running Best Guess Algorithm");
-        }
-
-        function endGameAlgorithm() {
-            solverLogger("Running End Game Algorithm");
-        }
-        /*ALGORITHMS END*/
-        function switchAlgorithm(algo) {
-            switch(algo){
-                case STRAIGHT_FORWARD:
-                    straightForwardAlgorithm();
-                    break;
-                case MULTI_BOX:
-                    multiBoxAlgorithm();
-                    break;
-                case BEST_GUESS:
-                    bestGuessAlgorithm();
-                    break;
-                case END_GAME:
-                    endGameAlgorithm();
-                    break;
-            default:
-              
-            }
-        }
+        return obj;
     };
 
-    $.fn.easyminesweeper = function () {
+    var Solver = function (obj, boardData, dimension) {
+
+        switchAlgorithm(STRAIGHT_FORWARD);
+
+
+
+    };
+
+    $.fn.aiminesweeper = function () {
         Game(this);
 
         return this;

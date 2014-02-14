@@ -12,11 +12,15 @@
 	
 	-webkit-user-select: none;
 }
-th {
+#aContainer th {
     font-size:48px!important;
 }
-td {
+#aContainer td {
     margin: 5px;
+    font-size:60px!important;
+    text-align:center; 
+    vertical-align:middle;
+    padding-top:20%;
 }
 
 #aContainer {
@@ -26,7 +30,6 @@ td {
     height: 100%;
     width: 100%;
     font-size: 20pt;
-    overflow-y: scroll;
 }
     #aContainer > div {
         margin-top: 20px;
@@ -41,7 +44,7 @@ td {
         -ms-grid-row: 2;
         -ms-grid-column: 1;
         display: -ms-grid;
-        -ms-grid-rows: 1fr;
+        -ms-grid-rows: 1fr 1fr;
         -ms-grid-columns: 1fr 1fr 1fr 1fr;
     }
         #achievementContainer > div {
@@ -50,24 +53,48 @@ td {
         #firstMoveMine {
             -ms-grid-row: 1;
             -ms-grid-column: 1;
-            height: 20%;
+            height: 90%;
             background-color: #459f48;
         }
-        #winHundredGames {
+        #playHundredGames {
             -ms-grid-row: 1;
             -ms-grid-column: 2;
-            height: 20%;
+            height: 90%;
             background-color: #ffd800;
         }
         #flagHundredMines {
             -ms-grid-row: 1;
             -ms-grid-column: 3;
-            height: 20%;
+            height: 90%;
             background-color: #ff6a00;
         }
         #beatAI {
             -ms-grid-row: 1;
             -ms-grid-column: 4;
-            height: 20%;
+            height: 90%;
+            background-color: #f00;
+        }
+        #win100EasyGames {
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+            height: 90%;
+            background-color: #459f48;
+        }
+        #win100MediumGames {
+            -ms-grid-row: 2;
+            -ms-grid-column: 2;
+            height: 90%;
+            background-color: #ffd800;
+        }
+        #win100ProGames {
+            -ms-grid-row: 2;
+            -ms-grid-column: 3;
+            height: 90%;
+            background-color: #ff6a00;
+        }
+        #play100MultiplayerGames {
+            -ms-grid-row: 2;
+            -ms-grid-column: 4;
+            height: 90%;
             background-color: #f00;
         }

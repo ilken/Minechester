@@ -148,6 +148,8 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             var gameTime = $(".timer").text();
+            var totalGamesPlayed = localSettings.values["totalGamesPlayed"] || 0;
+            localSettings.values["totalGamesPlayed"] = totalGamesPlayed + 1;
 
             if (!mediumAlgorithm) {
                 var bestTime = localSettings.values["medium"];

@@ -19,8 +19,25 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            /*var localSettings = applicationData.current.localSettings;
+            var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
+            
+            var playHundredGamesProgress = localSettings.values["totalGamesPlayed"] || 0;
+            if (playHundredGamesProgress > 100) playHundredGamesProgress = 100;
+            $("#playHundredGamesProgress").text(playHundredGamesProgress + "/100");
+
+            var win100EasyGames = localSettings.values["easyGamesWon"] || 0;
+            if (win100EasyGames > 100) win100EasyGames = 100;
+            $("#win100EasyGamesProgress").text(win100EasyGames + "/100");
+
+            var win100MediumGames = localSettings.values["mediumGamesWon"] || 0;
+            if (win100MediumGames > 100) win100MediumGames = 100;
+            $("#win100MediumGamesProgress").text(win100MediumGames + "/100");
+
+            var win100ProGames = localSettings.values["proGamesWon"] || 0;
+            if (win100ProGames > 100) win100ProGames = 100;
+            $("#win100ProGamesProgress").text(win100ProGames + "/100");
+            /*
             var easyBestTime = localSettings.values["easy"];
             var easyGamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
             var easyGamesWon = localSettings.values["easyGamesWon"] || 0;

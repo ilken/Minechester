@@ -149,7 +149,8 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             var gameTime = $(".timer").text();
-
+            
+            /*HIGH SCORES*/
             if (!proAlgorithm) {
                 var bestTime = localSettings.values["pro"];
                 var gamesPlayed = localSettings.values["proGamesPlayed"] || 0;
@@ -188,6 +189,12 @@
                 }
                 localSettings.values["AIProGamesPlayed"] = gamesPlayed + 1;
             }
+
+            /*ACHIEVEMENTS*/
+            var totalGamesPlayed = localSettings.values["totalGamesPlayed"] || 0;
+            localSettings.values["totalGamesPlayed"] = totalGamesPlayed + 1;
+
+
         };
 
         obj.stop = function () {

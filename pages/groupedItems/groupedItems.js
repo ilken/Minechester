@@ -110,6 +110,17 @@
                         Data.items.getAt(7).backgroundImage = "/images/London/London6.PNG";
                         Data.items.getAt(8).backgroundImage = "/images/London/London9.PNG";
                     }
+                    else if (item.title == "Classic") {
+                        Data.items.getAt(0).backgroundImage = "/images/easyLevel.PNG";
+                        Data.items.getAt(1).backgroundImage = "/images/mediumLevel.PNG";
+                        Data.items.getAt(2).backgroundImage = "/images/proLevel.PNG";
+                        Data.items.getAt(3).backgroundImage = "/images/multiplayer.png";
+                        Data.items.getAt(4).backgroundImage = "/images/challengeAI.PNG";
+                        Data.items.getAt(5).backgroundImage = "/images/hexagonal.PNG";
+                        Data.items.getAt(6).backgroundImage = "/images/tutorial.PNG";
+                        Data.items.getAt(7).backgroundImage = "/images/highscores.PNG";
+                        Data.items.getAt(8).backgroundImage = "/images/achievement.PNG";
+                    }
                     nav.navigate("/pages/groupedItems/groupedItems.html", { item: Data.getItemReference(item) });
                 }
                 else

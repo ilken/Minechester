@@ -8,7 +8,7 @@
     var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
-    var easyAlgorithm;
+
 
     ui.Pages.define("/pages/hexagonal/hexagonal.html", {
         // Navigates to the groupHeaderPage. Called from the groupHeaders,
@@ -21,7 +21,6 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
             $('#game').hexminesweeper();
-            easyAlgorithm = false;
 
             $(".mineCounter").text(40);
 
@@ -39,10 +38,6 @@
                 $('.hidden').closest('.hex').find('.top').css("border-bottom", "15px solid " + event.target.id);
                 $('.hidden').css("background-color", event.target.id);
                 $('.hidden').closest('.hex').find('.bottom').css("border-top", "15px solid " + event.target.id);
-            });
-
-            $('.revealedPalette').on('click', function (event) {
-                $('.revealed').css("background-color", event.target.id);
             });
         }
     });
@@ -115,7 +110,6 @@
             Windows.UI.Popups.MessageDialog("Time: " + $(".timer").text() + " seconds", message).showAsync();
         }
         obj.start = function () {
-            easyAlgorithm = false;
             var difficultyLevel = difficulty["pro"];
 
             $(".mineCounter").text(difficultyLevel.m);
@@ -157,44 +151,24 @@
             var totalGamesPlayed = localSettings.values["totalGamesPlayed"] || 0;
             localSettings.values["totalGamesPlayed"] = totalGamesPlayed + 1;
 
-            if (!easyAlgorithm) {
-                var bestTime = localSettings.values["easy"];
-                var gamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
-                var gamesWon = localSettings.values["easyGamesWon"] || 0;
-                var gamesLost = localSettings.values["easyGamesLost"] || 0;
+            var bestTime = localSettings.values["hex"];
+            var gamesPlayed = localSettings.values["hexGamesPlayed"] || 0;
+            var gamesWon = localSettings.values["hexGamesWon"] || 0;
+            var gamesLost = localSettings.values["hexGamesLost"] || 0;
 
-                if (result == "win") {
-                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                        localSettings.values["easy"] = gameTime;
-                    }
-                    localSettings.values["easyGamesWon"] = gamesWon + 1;
-                    localSettings.values["easyGamesLost"] = gamesLost;
+            if (result == "win") {
+                if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                    localSettings.values["hex"] = gameTime;
                 }
-                else if (result == "lose") {
-                    localSettings.values["easyGamesWon"] = gamesWon;
-                    localSettings.values["easyGamesLost"] = gamesLost + 1;
-                }
-                localSettings.values["easyGamesPlayed"] = gamesPlayed + 1;
+                localSettings.values["hexGamesWon"] = gamesWon + 1;
+                localSettings.values["hexGamesLost"] = gamesLost;
             }
-            else {
-                var bestTime = localSettings.values["AIEasy"];
-                var gamesPlayed = localSettings.values["AIEasyGamesPlayed"] || 0;
-                var gamesWon = localSettings.values["AIEasyGamesWon"] || 0;
-                var gamesLost = localSettings.values["AIEasyGamesLost"] || 0;
-
-                if (result == "win") {
-                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
-                        localSettings.values["AIEasy"] = gameTime;
-                    }
-                    localSettings.values["AIEasyGamesWon"] = gamesWon + 1;
-                    localSettings.values["AIEasyGamesLost"] = gamesLost;
-                }
-                else if (result == "lose") {
-                    localSettings.values["AIEasyGamesWon"] = gamesWon;
-                    localSettings.values["AIEasyGamesLost"] = gamesLost + 1;
-                }
-                localSettings.values["AIEasyGamesPlayed"] = gamesPlayed + 1;
+            else if (result == "lose") {
+                localSettings.values["hexGamesWon"] = gamesWon;
+                localSettings.values["hexGamesLost"] = gamesLost + 1;
             }
+            localSettings.values["hexGamesPlayed"] = gamesPlayed + 1;
+           
         };
 
         obj.stop = function () {
@@ -254,6 +228,7 @@
             $(element).find('.middle').toggleClass('flag', value);
             if (value) {
                 $(element).find('.middle').css('background-image', 'url(' + imageUrl + ')');
+                $(element).find('.middle').css('background', 'white');
             }
             else {
                 $(element).find('.middle').css('background-image', 'none');

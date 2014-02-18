@@ -74,6 +74,7 @@
     <Content Include="images\easy.png" />
     <Content Include="images\easyLevel.PNG" />
     <Content Include="images\flag.png" />
+    <Content Include="images\hexagonal.png" />
     <Content Include="images\highlight.png" />
     <Content Include="images\highscores.PNG" />
     <Content Include="images\logo.png" />

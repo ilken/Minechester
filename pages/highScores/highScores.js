@@ -53,6 +53,16 @@
             $("#proWin").text(proGamesWon);
             $("#proLose").text(proGamesLost);
 
+            var hexBestTime = localSettings.values["hex"];
+            var hexGamesPlayed = localSettings.values["hexGamesPlayed"] || 0;
+            var hexGamesWon = localSettings.values["hexGamesWon"] || 0;
+            var hexGamesLost = localSettings.values["hexGamesLost"] || 0;
+
+            $("#hexBestTime").text(hexBestTime);
+            $("#hexGamesPlayed").text(hexGamesPlayed);
+            $("#hexWin").text(hexGamesWon);
+            $("#hexLose").text(hexGamesLost);
+
             /*AI PART*/
             var AIeasyBestTime = localSettings.values["AIEasy"];
             var AIeasyGamesPlayed = localSettings.values["AIEasyGamesPlayed"] || 0;

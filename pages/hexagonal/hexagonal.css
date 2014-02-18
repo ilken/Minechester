@@ -55,7 +55,8 @@
     }
 
 .middle.hidden.flag { 
-    background: url('/images/flag.png') center no-repeat !important; 
+    background: url('/images/flag.png') white center no-repeat !important; 
+
 }
 
 .middle.hidden.flag > span { 
@@ -160,6 +161,7 @@ body {
             #cheatEngineHex {
                 -ms-grid-row: 3;
                 -ms-grid-column: 1;
+                display: none;
             }
                 .ctitle {
                     font-size: 28pt !important;

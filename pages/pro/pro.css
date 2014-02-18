@@ -130,33 +130,37 @@ body {
             display: -ms-grid;
             -ms-grid-rows: 1fr 4fr 4fr;
             -ms-grid-columns: 1fr;
-            height: 60%!important;
+            height: 90%!important;
         }
             #gameTitle {
                 -ms-grid-row: 1;
                 -ms-grid-column: 1;
             }
-            #cheatEngine {
+            #algoBox {
                 -ms-grid-row: 2;
                 -ms-grid-column: 1;
             }
-                .ctitle {
-                    font-size: 28pt !important;
+                #algoBox > button {
+                    height: 90%;
                 }
-                #cheatButtons {
-                    display: none;
-                }
+            #currentProHighScoreWrapper {
+                -ms-grid-row: 3;
+                -ms-grid-column: 1;
+                font-size: 28pt !important;
+            }
 
             #paletteContainer {
-                -ms-grid-row: 3;
+                -ms-grid-row: 4;
                 -ms-grid-column: 1;
                 display: -ms-grid;
                 -ms-grid-rows: 1fr;
                 -ms-grid-columns: 1fr;
+                height: 100%;
             }
                 #palette {
                     -ms-grid-row: 1;
                     -ms-grid-column: 1;
+                    font-size: 28pt !important;
                 }
 
         #gameBody {

@@ -20,6 +20,12 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+            var localSettings = applicationData.current.localSettings;
+            var localFolder = applicationData.current.localFolder;
+
+            var getCurrentHighScore = localSettings.values["medium"] || 0;
+            $("#currentMediumHighScore").text(getCurrentHighScore);
+
             $('#game').mediumminesweeper();
 
             mediumAlgorithm = false;
@@ -177,7 +183,7 @@
                 var gamesLost = localSettings.values["AIMediumGamesLost"] || 0;
 
                 if (result == "win") {
-                    if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                    if (!bestTime || (bestTime && (gameTime > bestTime))) {
                         localSettings.values["AIMedium"] = gameTime;
                     }
                     localSettings.values["AIMediumGamesWon"] = gamesWon + 1;
@@ -217,7 +223,14 @@
 
             mineCounter = gameElement.find('.mineCounter');
 
-            gameElement.find('button.newGame').on('click', obj.start);
+            gameElement.find('button.newGame').on('click', function (){           
+                var localSettings = applicationData.current.localSettings;
+                var localFolder = applicationData.current.localFolder;
+
+                var getCurrentHighScore = localSettings.values["medium"] || 0;
+                $("#currentMediumHighScore").text(getCurrentHighScore);
+                obj.start();
+            });
 
             gameElement.on('contextmenu', function () { return false; });
 

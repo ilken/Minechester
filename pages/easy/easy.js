@@ -20,6 +20,12 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
+            var localSettings = applicationData.current.localSettings;
+            var localFolder = applicationData.current.localFolder;
+
+            var getCurrentHighScore = localSettings.values["easy"] || 0;
+            $("#currentEasyHighScore").text(getCurrentHighScore);
+
             $('#game').easyminesweeper();
 
             easyAlgorithm = false;
@@ -210,7 +216,14 @@
 
             mineCounter = gameElement.find('.mineCounter');
 
-            gameElement.find('button.newGame').on('click', obj.start);
+            gameElement.find('button.newGame').on('click', function () {        
+                var localSettings = applicationData.current.localSettings;
+                var localFolder = applicationData.current.localFolder;
+
+                var getCurrentHighScore = localSettings.values["easy"] || 0;
+                $("#currentEasyHighScore").text(getCurrentHighScore);
+                obj.start();
+            });
 
             gameElement.on('contextmenu', function () { return false; });
 

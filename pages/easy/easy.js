@@ -37,19 +37,9 @@
             $('.hiddenPalette').on('click', function (event) {
                 $('.hidden').css("background-color", event.target.id);
             });
-
-            $('.revealedPalette').on('click', function (event) {
-                $('.revealed').css("background-color", event.target.id);
-            });
-        },
+        }
     });
 
-    //customizable initial screen
-    //custom mines field
-    //multiplayer important
-    //hexagonal
-    //2 mines cannot be close to each other
-    //time limit
     var Game = function (gameElement) {
         var obj = {},
             isActive = false,
@@ -393,32 +383,6 @@
             return $.grep(result, condition);
         }
 
-        $('.revealBox').click(function () {
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isText && !boardData[i][j].isRevealed) {
-                        boardData[i][j].setRevealed(true);
-
-                        if (isGameOver()) {
-                            $(obj).trigger('win');
-                        }
-                        return;
-                    }
-                }
-            }
-        });
-
-        $('.flagMine').click(function () {
-            for (var i = 0; i < dimension; i++) {
-                for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isMine && !boardData[i][j].isFlagged) {
-                        boardData[i][j].setFlagged(true);
-                        return;
-                    }
-                }
-            }
-        });
-
         function revealBoard() {
             for (var i = 0; i < dimension; i++)
                 for (var j = 0; j < dimension; j++)
@@ -524,16 +488,8 @@
             BEST_GUESS = "BestGuess",
             END_GAME = "EndGame";
 
-        clearLogger();
-        solverLogger("Running Solver Algorithm...");      
         //Run
         switchAlgorithm(STRAIGHT_FORWARD);
-        function clearLogger() {
-            $('#algoText').val("");
-        }
-        function solverLogger(txt) {
-            $('#algoText').append(txt + "\n");
-        }
 
         function isGameStarted() {
             var rtn = false;
@@ -556,11 +512,9 @@
         }
 
         function randomGuess() {
-            solverLogger("Making a random guess!");
             var x = Math.floor((Math.random() * dimension));
             var y = Math.floor((Math.random() * dimension));
 
-            solverLogger("Random:(" + x + " | " + y + ")");
             obj.reveal(boardData[x][y]);
         }
 
@@ -590,20 +544,13 @@
                 for (var i = 0; i < _clickableArray.length; i++) {
                     animateClick(_clickableArray[i],"number");
                     isSafeBox = true;
-                    //solverLogger("Field:(" + column+1 + " | " + row+1 + ")");
-                    //solverLogger("Click:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
-                //solverLogger("-----------");
             }
             else if (_clickableBoxes > 0 && (_revealedMines < mines) && (_clickableBoxes == (mines - _revealedMines))) {
-                //solverLogger("Field:(" + column + " | " + row + ")");
                 for (var i = 0; i < _clickableArray.length; i++) {
                     animateClick(_clickableArray[i],"flag");
                     isSafeBox = true;
-
-                    //solverLogger("Flag:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
-                //solverLogger("-----------");
             }
                 
             return isSafeBox;
@@ -644,7 +591,6 @@
         }
         /*ALGORITHMS*/
         function straightForwardAlgorithm() {
-            solverLogger("Running Straight Forward Algorithm");
             var isStraightForwardAlgoWorking = false;
             if (!isGameStarted()) {
                 randomGuess();
@@ -669,7 +615,6 @@
         }
 
         function multiBoxAlgorithm() {
-            solverLogger("Running Multi Box Algorithm");
             var isMultiBoxAlgoWorking = false;
 
             for (var i = 0; i < dimension; i++) {
@@ -692,11 +637,9 @@
         }
         
         function bestGuessAlgorithm() {
-            solverLogger("Running Best Guess Algorithm");
         }
 
         function endGameAlgorithm() {
-            solverLogger("Running End Game Algorithm");
         }
         /*ALGORITHMS END*/
         function switchAlgorithm(algo) {

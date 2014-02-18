@@ -521,8 +521,6 @@
             BEST_GUESS = "BestGuess",
             END_GAME = "EndGame";
 
-        clearLogger();
-        solverLogger("Running Solver Algorithm...");
         //Run
         switchAlgorithm(STRAIGHT_FORWARD);
         function clearLogger() {
@@ -553,11 +551,9 @@
         }
 
         function randomGuess() {
-            solverLogger("Making a random guess!");
             var x = Math.floor((Math.random() * dimension));
             var y = Math.floor((Math.random() * dimension));
 
-            solverLogger("Random:(" + x + " | " + y + ")");
             obj.reveal(boardData[x][y]);
         }
 
@@ -587,20 +583,14 @@
                 for (var i = 0; i < _clickableArray.length; i++) {
                     animateClick(_clickableArray[i], "number");
                     isSafeBox = true;
-                    //solverLogger("Field:(" + column+1 + " | " + row+1 + ")");
-                    //solverLogger("Click:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
-                //solverLogger("-----------");
             }
             else if (_clickableBoxes > 0 && (_revealedMines < mines) && (_clickableBoxes == (mines - _revealedMines))) {
-                //solverLogger("Field:(" + column + " | " + row + ")");
                 for (var i = 0; i < _clickableArray.length; i++) {
                     animateClick(_clickableArray[i], "flag");
                     isSafeBox = true;
 
-                    //solverLogger("Flag:(" + _clickableArray[i].y+1 + " | " + _clickableArray[i].x+1 + ")");
                 }
-                //solverLogger("-----------");
             }
 
             return isSafeBox;
@@ -641,7 +631,6 @@
         }
         /*ALGORITHMS*/
         function straightForwardAlgorithm() {
-            solverLogger("Running Straight Forward Algorithm");
             var isStraightForwardAlgoWorking = false;
             if (!isGameStarted()) {
                 randomGuess();
@@ -666,7 +655,6 @@
         }
 
         function multiBoxAlgorithm() {
-            solverLogger("Running Multi Box Algorithm");
             var isMultiBoxAlgoWorking = false;
 
             for (var i = 0; i < dimension; i++) {
@@ -689,11 +677,9 @@
         }
 
         function bestGuessAlgorithm() {
-            solverLogger("Running Best Guess Algorithm");
         }
 
         function endGameAlgorithm() {
-            solverLogger("Running End Game Algorithm");
         }
         /*ALGORITHMS END*/
         function switchAlgorithm(algo) {

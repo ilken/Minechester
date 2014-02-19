@@ -23,7 +23,7 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
 
-            var getCurrentHighScore = localSettings.values["medium"] || 0;
+            var getCurrentHighScore = localSettings.values["medium"]
             $("#currentMediumHighScore").text(getCurrentHighScore);
 
             $('#game').mediumminesweeper();

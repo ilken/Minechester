@@ -129,10 +129,12 @@
                     else
                         winner = "Noob Draw";
 
+                    obj.updateStatistics("win");
                     window.setTimeout(function () { displayMessage(winner); }, 100);
                 })
                 .one('gameover', function () {
                     obj.stop();
+                    obj.updateStatistics("lose");
                     window.setTimeout(function () { displayMessage("Game Over"); }, 100);
                 })
                 .one('fieldSelected', startTimer) // start timer on first move
@@ -143,6 +145,32 @@
             resetMineCounter();
 
             isActive = true;
+        };
+
+        obj.updateStatistics = function (result) {
+            var localSettings = applicationData.current.localSettings;
+            var localFolder = applicationData.current.localFolder;
+            var gameTime = $(".timer").text();
+            var totalGamesPlayed = localSettings.values["totalGamesPlayed"] || 0;
+            localSettings.values["totalGamesPlayed"] = totalGamesPlayed + 1;
+
+            var bestTime = localSettings.values["multi"];
+            var gamesPlayed = localSettings.values["multiGamesPlayed"] || 0;
+            var gamesWon = localSettings.values["multiGamesWon"] || 0;
+            var gamesLost = localSettings.values["multiGamesLost"] || 0;
+
+            if (result == "win") {
+                if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                    localSettings.values["multi"] = gameTime;
+                }
+                localSettings.values["multiGamesWon"] = gamesWon + 1;
+                localSettings.values["multiGamesLost"] = gamesLost;
+            }
+            else if (result == "lose") {
+                localSettings.values["multiGamesWon"] = gamesWon;
+                localSettings.values["multiGamesLost"] = gamesLost + 1;
+            }
+            localSettings.values["multiGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {

@@ -42,12 +42,6 @@
         }
     });
 
-    //customizable initial screen
-    //custom mines field
-    //multiplayer important
-    //hexagonal
-    //2 mines cannot be close to each other
-    //time limit
     var Game = function (gameElement) {
         var obj = {},
             isActive = false,

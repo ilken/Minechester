@@ -233,7 +233,7 @@
                 var localSettings = applicationData.current.localSettings;
                 var localFolder = applicationData.current.localFolder;
 
-                var getCurrentHighScore = localSettings.values["pro"] || 0;
+                var getCurrentHighScore = localSettings.values["pro"];
                 $("#currentProHighScore").text(getCurrentHighScore);
                 obj.start();
             });

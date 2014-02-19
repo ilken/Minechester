@@ -22,6 +22,10 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             
+            var winHundredHexagonalProgress = localSettings.values["hexGamesWon"];
+            if (winHundredHexagonalProgress > 100) winHundredHexagonalProgress = 100;
+            $("#winHundredHexagonalProgress").text(winHundredHexagonalProgress + "/100");
+
             var playHundredGamesProgress = localSettings.values["totalGamesPlayed"] || 0;
             if (playHundredGamesProgress > 100) playHundredGamesProgress = 100;
             $("#playHundredGamesProgress").text(playHundredGamesProgress + "/100");
@@ -37,36 +41,10 @@
             var win100ProGames = localSettings.values["proGamesWon"] || 0;
             if (win100ProGames > 100) win100ProGames = 100;
             $("#win100ProGamesProgress").text(win100ProGames + "/100");
-            /*
-            var easyBestTime = localSettings.values["easy"];
-            var easyGamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
-            var easyGamesWon = localSettings.values["easyGamesWon"] || 0;
-            var easyGamesLost = localSettings.values["easyGamesLost"] || 0;
 
-            $("#easyBestTime").text(easyBestTime);
-            $("#easyGamesPlayed").text(easyGamesPlayed);
-            $("#easyWin").text(easyGamesWon);
-            $("#easyLose").text(easyGamesLost);
-
-            var mediumBestTime = localSettings.values["medium"];
-            var mediumGamesPlayed = localSettings.values["mediumGamesPlayed"] || 0;
-            var mediumGamesWon = localSettings.values["mediumGamesWon"] || 0;
-            var mediumGamesLost = localSettings.values["mediumGamesLost"] || 0;
-
-            $("#mediumBestTime").text(mediumBestTime);
-            $("#mediumGamesPlayed").text(mediumGamesPlayed);
-            $("#mediumWin").text(mediumGamesWon);
-            $("#mediumLose").text(mediumGamesLost);
-
-            var proBestTime = localSettings.values["pro"];
-            var proGamesPlayed = localSettings.values["proGamesPlayed"] || 0;
-            var proGamesWon = localSettings.values["proGamesWon"] || 0;
-            var proGamesLost = localSettings.values["proGamesLost"] || 0;
-
-            $("#proBestTime").text(proBestTime);
-            $("#proGamesPlayed").text(proGamesPlayed);
-            $("#proWin").text(proGamesWon);
-            $("#proLose").text(proGamesLost);*/
+            var play100MultiplayerGames = localSettings.values["multiGamesWon"] || 0;
+            if (play100MultiplayerGames > 100) play100MultiplayerGames = 100;
+            $("#play100MultiplayerGamesProgress").text(play100MultiplayerGames + "/100");
         }
     });
 })();

@@ -220,7 +220,7 @@
                 var localSettings = applicationData.current.localSettings;
                 var localFolder = applicationData.current.localFolder;
 
-                var getCurrentHighScore = localSettings.values["easy"] || 0;
+                var getCurrentHighScore = localSettings.values["easy"];
                 $("#currentEasyHighScore").text(getCurrentHighScore);
                 obj.start();
             });

@@ -19,55 +19,50 @@ td {
     margin: 5px;
 }
 
-#gContainer {
+#tContainer {
     display: -ms-grid;
     -ms-grid-rows: 1fr 9fr;
     -ms-grid-columns: 1fr;
     height: 100%;
     width: 100%;
     font-size: 20pt;
-    overflow-y: scroll;
 }
-    #gContainer > div {
+    #tContainer > div {
         margin-top: 20px;
     }
-    #scoreTitle {
+    #tutorialTitle {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
         margin: 10px;
         font-size: 46pt;
     }
-    #scoreContainer {
+    #tutorialWrapper {
         -ms-grid-row: 2;
         -ms-grid-column: 1;
         display: -ms-grid;
         -ms-grid-rows: 1fr;
-        -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        -ms-grid-columns: 1fr;            
+        height: 99%;
+        width: 1000px;
     }
-        #scoreContainer > div {
+        #tutorialWrapper > div {
             margin: 10px;
         }
-        #easy {
+        #tutorialContainer {
             -ms-grid-row: 1;
             -ms-grid-column: 1;
-            height: 50%;
-            background-color: #459f48;
+            height: 95%;
+            width: 2000px;
+            overflow-x: scroll;
+            display: -ms-grid;
+            -ms-grid-rows: 1fr;
+            -ms-grid-columns: 1300px 1300px;  
         }
-        #medium {
-            -ms-grid-row: 1;
-            -ms-grid-column: 2;
-            height: 50%;
-            background-color: #ffd800;
-        }
-        #pro {
-            -ms-grid-row: 1;
-            -ms-grid-column: 3;
-            height: 50%;
-            background-color: #ff6a00;
-        }
-        #multiplayer {
-            -ms-grid-row: 1;
-            -ms-grid-column: 4;
-            height: 50%;
-            background-color: #f00;
-        }
+            #col1 {
+                -ms-grid-row: 1;
+                -ms-grid-column: 1;
+            }
+            #col2 {
+                -ms-grid-row: 1;
+                -ms-grid-column: 2;
+            }

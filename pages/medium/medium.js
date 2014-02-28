@@ -287,7 +287,7 @@
         };
 
         obj.setText = function (value) {
-            $('<span />').text(value).appendTo(element);
+            $('<span class="mediumSpan"/>').text(value).appendTo(element);
             obj.isText = true;
         };
 

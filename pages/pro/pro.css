@@ -62,12 +62,14 @@
 }
 
 
-span {
+.proSpan {
     line-height: 50px;
-    font-size: 36pt!important;
+    font-size: 28pt!important;
+    margin: 5px;
+    display: block;
 }
 
-span, button, img {
+button, img {
     font-size: 25pt;
     margin: 5px;
     display: block;
@@ -234,17 +236,11 @@ body {
                         margin: 1px;
                         border-radius: 5px;
                     }
-                    span {
-                        font-size: 28pt!important;
-                    }
+
                 #newGame {
                     -ms-grid-row: 3;
                     -ms-grid-column: 1;
                 }
-
-table {
-    
-}
 
 .emptyPalette,
     .hiddenPalette,

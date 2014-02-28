@@ -3,7 +3,7 @@
     margin: 0px;
 }
 
-.multiBoard{
+.AIBoard{
     margin-top: 10px;
     border: 1px outset #eee;
 	width: 900px!important;
@@ -11,7 +11,7 @@
     border: none;
 }
 
-.multifield{
+.AIfield{
 	width: 40px!important;
     height: 40px!important;
 	border: 1px inset #666;
@@ -26,34 +26,34 @@
 	font-weight: bold;
 
 } 
-    .multifield:hover {
+    .AIfield:hover {
         margin-top: -1px;
     }
 
-.multifield.hidden.flag { 
+.AIfield.hidden.flag { 
     background: #eee url('/images/flag.png') center no-repeat !important; 
 }
 
-.multifield.hidden.flag > span { 
+.AIfield.hidden.flag > span { 
     display: none; 
 }
 
-.multifield.mine { 
+.AIfield.mine { 
     background: url('/images/red_mine.png') center no-repeat; 
     background-color: red;
 }
 
-.multifield.mine > span { 
+.AIfield.mine > span { 
     display: none; 
 }
 
-.multifield.hidden{
+.AIfield.hidden{
     background-image:none ;
     background-color: #eee ;
 	color: #eee !important;
 }
 
-.multifield.hidden > span { display: none !important; }
+.AIfield.hidden > span { display: none !important; }
 
 .clear { clear: both; }
 
@@ -62,12 +62,14 @@
 }
 
 
-span {
-    line-height: 50px;
-    font-size: 36pt!important;
+.AISpan {
+    margin: 5px;
+    display: block;
+    line-height: 30px!important;
+    font-size: 24pt!important;
 }
 
-span, button, img {
+button, img {
     font-size: 25pt;
     margin: 5px;
     display: block;
@@ -100,7 +102,6 @@ textarea {
 body {
     color: white; 
     font-family:'Comic Sans MS';
-    border:solid 0px white;
 }
 
 #gridContainerAI {
@@ -311,13 +312,9 @@ body {
                         height: 40px!important;
                     }
 
-                    .multiBoard > div {
+                    .AIBoard > div {
                         margin: 1px;
                         border-radius: 5px;
-                    }
-                    span {
-                        line-height: 30px!important;
-                        font-size: 24pt!important;
                     }
 
                 #newGame {

@@ -293,7 +293,7 @@
         };
 
         obj.setText = function (value) {
-            $('<span />').text(value).appendTo(element);
+            $('<span class="proSpan"/>').text(value).appendTo(element);
             obj.isText = true;
         };
 

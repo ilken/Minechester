@@ -22,7 +22,7 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
             
-            var winHundredHexagonalProgress = localSettings.values["hexGamesWon"];
+            var winHundredHexagonalProgress = localSettings.values["hexGamesWon"] || 0;
             if (winHundredHexagonalProgress > 100) winHundredHexagonalProgress = 100;
             $("#winHundredHexagonalProgress").text(winHundredHexagonalProgress + "/100");
 

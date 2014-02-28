@@ -114,7 +114,7 @@
             gameElement.width((difficultyLevel.d * 50) + 2);
 
             // create board
-            board = Board(gameElement.find('.multiBoard').empty(), difficultyLevel.d, difficultyLevel.m);
+            board = Board(gameElement.find('.AIBoard').empty(), difficultyLevel.d, difficultyLevel.m);
             board.draw();
 
             $(board)
@@ -228,7 +228,7 @@
         };
 
         obj.setText = function (value) {
-            $('<span />').text(value).appendTo(element);
+            $('<span class="AISpan"/>').text(value).appendTo(element);
             obj.isText = true;
         };
 
@@ -247,7 +247,7 @@
                 boardData[i] = [];
 
                 for (j = 0; j < dimension; j++) {
-                    fieldElement = $('<div class="multifield hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
+                    fieldElement = $('<div class="AIfield hidden revealed" id="'+i+'X'+j+'"/>').appendTo(element);
 
                     boardData[i][j] = Field(fieldElement, i, j);
 
@@ -618,8 +618,8 @@
         (function init() {
             // expose fieldSelected event
             element
-                .off('mousedown', '.multifield')
-                .on('mousedown', '.multifield', function (e) {
+                .off('mousedown', '.AIfield')
+                .on('mousedown', '.AIfield', function (e) {
                     $(obj).trigger('fieldSelected', [e, locateField($(this))]);
                 });
         }());

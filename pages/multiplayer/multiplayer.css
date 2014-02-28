@@ -62,12 +62,15 @@
 }
 
 
-span {
+.multiSpan {
     line-height: 50px;
-    font-size: 36pt!important;
+    margin: 5px;
+    display: block;
+    line-height: 30px!important;
+    font-size: 24pt!important;
 }
 
-span, button, img {
+button, img {
     font-size: 25pt;
     margin: 5px;
     display: block;
@@ -314,10 +317,6 @@ body {
                     .multiBoard > div {
                         margin: 1px;
                         border-radius: 5px;
-                    }
-                    span {
-                        line-height: 30px!important;
-                        font-size: 24pt!important;
                     }
 
                 #newGame {

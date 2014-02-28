@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <VisualElements DisplayName="Minechester" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Minechester" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="Minechester" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Minechester" ForegroundText="light" BackgroundColor="#6E3097">
         <DefaultTile ShowName="allLogos" WideLogo="images\WideLogo.png" />
-        <SplashScreen Image="images\splashscreen.png" BackgroundColor="purple" />
+        <SplashScreen Image="images\splashscreen.png" BackgroundColor="#6E3097" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
         </InitialRotationPreference>

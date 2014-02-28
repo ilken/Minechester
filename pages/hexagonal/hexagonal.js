@@ -24,6 +24,9 @@
 
             $(".mineCounter").text(40);
 
+            $("#backButton").on('click', function () {
+                nav.navigate("/pages/groupedItems/groupedItems.html");
+            });
             $('.emptyPalette').on('click', function (event) {
                 $('.emptyRevealed').closest('.hex').find('.top').css("border-bottom", "15px solid " + event.target.id);
                 $('.emptyRevealed').css("background-color", event.target.id);

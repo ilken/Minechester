@@ -62,12 +62,14 @@
 }
 
 
-span {
+.easySpan {
     line-height: 50px;
     font-size: 36pt!important;
+    margin: 5px;
+    display: block;
 }
 
-span, button, img {
+button, img {
     font-size: 25pt;
     margin: 5px;
     display: block;

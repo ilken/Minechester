@@ -45,6 +45,15 @@
             var play100MultiplayerGames = localSettings.values["multiGamesWon"] || 0;
             if (play100MultiplayerGames > 100) play100MultiplayerGames = 100;
             $("#play100MultiplayerGamesProgress").text(play100MultiplayerGames + "/100");
+
+            var beatAI10Times = localSettings.values["p1AIGamesWon"] || 0;
+            if (beatAI10Times > 10) beatAI10Times = 10;
+            $("#BeatAIProgress").text(beatAI10Times + "/10");
+
+            var solver100Times = (localSettings.values["AIEasyGamesWon"] || 0) + (localSettings.values["AIMediumGamesWon"] || 0) + (localSettings.values["AIProGamesWon"] || 0);
+            if (solver100Times > 100) solver100Times = 100;
+            $("#flagHundredMinesProgress").text(solver100Times + "/100");
+            
         }
     });
 })();

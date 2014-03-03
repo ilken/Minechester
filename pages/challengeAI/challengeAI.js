@@ -5,6 +5,7 @@
 
     var appView = Windows.UI.ViewManagement.ApplicationView;
     var appViewState = Windows.UI.ViewManagement.ApplicationViewState;
+    var applicationData = Windows.Storage.ApplicationData;
     var nav = WinJS.Navigation;
     var ui = WinJS.UI;
 
@@ -117,13 +118,17 @@
                     obj.stop();
                     var finalP1Score = parseInt($("#p1Score").text()),
                         finalP2Score = parseInt($("#p2Score").text());
-                    if (finalP1Score > finalP2Score)
+                    if (finalP1Score > finalP2Score) {
                         winner = "Player 1 Won!";
-                    else if (finalP2Score > finalP1Score)
+                        obj.updateStatistics(1);
+                    }
+                    else if (finalP2Score > finalP1Score) {
                         winner = "Player 2 Won!";
+                        obj.updateStatistics(2);
+                    }
                     else
                         winner = "Noob Draw";
-
+                    
                     window.setTimeout(function () { displayMessage(winner); }, 100);
                 })
                 .one('gameover', function () {
@@ -138,6 +143,30 @@
             resetMineCounter();
 
             isActive = true;
+        };
+
+        obj.updateStatistics = function (result) {
+            var localSettings = applicationData.current.localSettings;
+            var localFolder = applicationData.current.localFolder;
+            var gameTime = $(".timer").text();
+            var totalGamesPlayed = localSettings.values["totalGamesPlayed"] || 0;
+            localSettings.values["totalGamesPlayed"] = totalGamesPlayed + 1;
+
+            var bestTime = localSettings.values["AI"];
+            var gamesPlayed = localSettings.values["AIGamesPlayed"] || 0;
+            var p1GamesWon = localSettings.values["p1AIGamesWon"] || 0;
+            var p2GamesLost = localSettings.values["p2AIGamesWon"] || 0;
+
+            if (!bestTime || (bestTime && (gameTime < bestTime))) {
+                localSettings.values["AI"] = gameTime;
+            }
+            if (result == 1) {
+                localSettings.values["p1AIGamesWon"] = p1GamesWon + 1;
+            }
+            else { 
+                localSettings.values["p2AIGamesWon"] = p2GamesLost + 1;
+            }
+            localSettings.values["AIGamesPlayed"] = gamesPlayed + 1;
         };
 
         obj.stop = function () {

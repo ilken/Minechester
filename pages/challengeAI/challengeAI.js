@@ -37,12 +37,6 @@
 
     });
 
-    //customizable initial screen
-    //custom mines field
-    //multiplayer important
-    //hexagonal
-    //2 mines cannot be close to each other
-    //time limit
     var Game = function (gameElement) {
         var obj = {},
             isActive = false,
@@ -108,6 +102,7 @@
         obj.start = function () {
             $("#p1Score").text(0);
             $("#p2Score").text(0);
+            turn = player1;
             var difficultyLevel = difficulty["godlike"];
 
             // set game width
@@ -123,9 +118,9 @@
                     var finalP1Score = parseInt($("#p1Score").text()),
                         finalP2Score = parseInt($("#p2Score").text());
                     if (finalP1Score > finalP2Score)
-                        winner = "Player 1 Win!";
+                        winner = "Player 1 Won!";
                     else if (finalP2Score > finalP1Score)
-                        winner = "Player 2 Win!";
+                        winner = "Player 2 Won!";
                     else
                         winner = "Noob Draw";
 
@@ -429,6 +424,9 @@
                     $(obj).trigger('win');
                     return;
                 }
+                else if(turn == player2 && !auto){
+                    switchAlgorithm("StraightForward");
+                }
             }
         };
 
@@ -440,6 +438,10 @@
                     if (field.isMine) {
                         setScore(turn, 500);
                         checkTriggerWin();
+                        if (turn == player2) {
+                            changeMineCounter();
+                            switchAlgorithm("StraightForward");
+                        }
                     }
                     else {
                         setScore(turn, -500);
@@ -538,10 +540,11 @@
         }
 
         function randomGuess() {
+            var x, y;
             do {
-                var x = Math.floor((Math.random() * dimension));
-                var y = Math.floor((Math.random() * dimension));
-            } while (!boardData[x][y].isRevealed);
+                x = Math.floor((Math.random() * dimension));
+                y = Math.floor((Math.random() * dimension));
+            } while (boardData[x][y].isRevealed || boardData[x][y].isFlagged);
 
             obj.reveal(boardData[x][y]);
         }
@@ -552,7 +555,7 @@
             for (var i = 0; i < dimension; i++) {
                 var mines;
                 for (var j = 0; j < dimension; j++) {
-                    if (boardData[i][j].isRevealed && boardData[i][j].isText) {
+                    if (boardData[i][j].isRevealed && boardData[i][j].isText && !isStraightForwardAlgoWorking) {
                         mines = boardData[i][j].mineCount;
                         if (getSafeBox(i, j, mines)) {
                             isStraightForwardAlgoWorking = true;
@@ -581,7 +584,7 @@
                             _clickableBoxes++;
                             _clickableArray.push(boardData[i][j]);
                         }
-                        if (boardData[i][j].isFlagged) {
+                        if (boardData[i][j].isFlagged || (boardData[i][j].isMine && boardData[i][j].isRevealed)) {
                             _revealedMines++;
                         }
                     }
@@ -612,6 +615,7 @@
                 window.setTimeout(function () { obj.flag(cell) }, 100);
             else
                 window.setTimeout(function () { obj.reveal(cell) }, 100);
+
         }
 
         // constructor
@@ -625,14 +629,6 @@
         }());
 
         return obj;
-    };
-
-    var Solver = function (obj, boardData, dimension) {
-
-        switchAlgorithm(STRAIGHT_FORWARD);
-
-
-
     };
 
     $.fn.aiminesweeper = function () {

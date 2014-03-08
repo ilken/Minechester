@@ -123,7 +123,7 @@
                         obj.updateStatistics(1);
                     }
                     else if (finalP2Score > finalP1Score) {
-                        winner = "Player 2 Won!";
+                        winner = "Computer Won!";
                         obj.updateStatistics(2);
                     }
                     else
@@ -563,6 +563,15 @@
                 case "RandomGuess":
                     randomGuess();
                     break;
+                case "Joker":
+                    probabilityGuess();
+                    break;
+                case "MultiBox":
+                    multiBox();
+                    break;
+                case "EndGame":
+                    endGame();
+                    break;
                 default:
 
             }
@@ -578,9 +587,49 @@
             obj.reveal(boardData[x][y]);
         }
 
+        function probabilityGuess() {
+            var isProbabilityAlgoWorking = false;
+            for (var i = 0; i < dimension; i++) {
+                for (var j = 0; j < dimension; j++) {
+                    if (!boardData[i][j].isRevealed && boardData[i][j].isEmpty && !isProbabilityAlgoWorking) {
+                        obj.reveal(boardData[i][j]);
+                        isProbabilityAlgoWorking = true;
+                    }
+                }
+            }
+            if (!isProbabilityAlgoWorking) {
+                switchAlgorithm("MultiBox");
+            }
+        }
+
+        function multiBox() {
+            var isMultiBoxWorking = false;
+            for (var i = 0; i < dimension; i++) {
+                for (var j = 0; j < dimension; j++) {
+                    if (!boardData[i][j].isRevealed && boardData[i][j].isText && !isMultiBoxWorking) {
+                        obj.reveal(boardData[i][j]);
+                        isMultiBoxWorking = true;
+                    }
+                }
+            }
+            if (!isMultiBoxWorking) {
+                switchAlgorithm("EndGame");
+            }
+        }
+
+        function endGame() {
+            if (isGameOver()) {
+                $(obj).trigger('win');
+                return;
+            }
+            else {
+                switchTurn();
+            }
+        }
+
         function straightForwardAlgorithm() {
             var isStraightForwardAlgoWorking = false;
-
+            var AILevel = $('#computerLevel').find(":selected").text();
             for (var i = 0; i < dimension; i++) {
                 var mines;
                 for (var j = 0; j < dimension; j++) {
@@ -592,9 +641,14 @@
                     }
                 }
             }
-            
-            if (!isStraightForwardAlgoWorking)
-                switchAlgorithm("RandomGuess");
+            if (!isStraightForwardAlgoWorking) {
+                if (AILevel == "Pro") {
+                    switchAlgorithm("Joker");
+                }
+                else {
+                    switchAlgorithm("RandomGuess");
+                }
+            }
         }
 
         function getSafeBox(row, column,mines) {

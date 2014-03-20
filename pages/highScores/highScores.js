@@ -22,7 +22,7 @@
             var localSettings = applicationData.current.localSettings;
             var localFolder = applicationData.current.localFolder;
 
-            /*PLAYER PART*/
+            /*PLAYER PART*/      
             var easyBestTime = localSettings.values["easy"];
             var easyGamesPlayed = localSettings.values["easyGamesPlayed"] || 0;
             var easyGamesWon = localSettings.values["easyGamesWon"] || 0;

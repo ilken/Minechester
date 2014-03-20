@@ -158,17 +158,6 @@ body {
                 -ms-grid-row: 1;
                 -ms-grid-column: 1;
             }
-            #cheatEngineHex {
-                -ms-grid-row: 3;
-                -ms-grid-column: 1;
-                display: none;
-            }
-                .ctitle {
-                    font-size: 28pt !important;
-                }
-                #cheatButtons {
-                    display: none;
-                }
 
             #paletteContainerHex {
                 -ms-grid-row: 2;

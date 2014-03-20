@@ -177,7 +177,7 @@
                 localSettings.values["mediumGamesPlayed"] = gamesPlayed + 1;
             }
             else {
-                var bestTime = localSettings.values["MediumEasy"];
+                var bestTime = localSettings.values["AIMedium"];
                 var gamesPlayed = localSettings.values["AIMediumGamesPlayed"] || 0;
                 var gamesWon = localSettings.values["AIMediumGamesWon"] || 0;
                 var gamesLost = localSettings.values["AIMediumGamesLost"] || 0;
